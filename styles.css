@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.main {
+    height: 100vh;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+    font-size: 12px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+#the-logo {
+    width: 30px;
+    border-radius: 50%;
+}
+
+#logo-item {
+    width: 20px;
+    display: block;
+}
+
+.heading {
+    background: #2196F3;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    height: 5vh;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-know, .header-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 50px;
+}
+
+.sections {
+    display: flex;
+    justify-content: center;
+}
+
+.section1 {
+    height: 50vh;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(images/adam.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.section1 p {
+    font-size: 14px;
+}
+
+h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.sectionx {
+    display: flex;
+    justify-content: center;
+    background: #E8EDF2;
+}
+
+.section2 {
+    height: 40vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.domain {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.domains a {
+    display: block;
+}
+
+#domain-img {
+    width: 200px;
+    height: 140px;
+    border: 2px solid #2196F3;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#domain-img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(33, 150, 243, 0.35);
+}
+
+#domain-img:focus-visible {
+    outline: 3px solid #0d47a1;
+    outline-offset: 2px;
+}
+
+.footing {
+    display: flex;
+    justify-content: center;
+    background: #2196F4;
+}
+
+.footer {
+    height: 5vh;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+    color: white;
+}
+
+.footer a {
+    color: white;
+}

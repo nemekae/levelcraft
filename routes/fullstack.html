@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Junior Full-Stack Engineer: 9-Month Curriculum</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap");
+
+      :root {
+        --bg: #0a0a0f;
+        --surface: #111118;
+        --border: #1e1e2e;
+        --accent: #00e5a0;
+        --accent2: #7c6fff;
+        --accent3: #ff6b6b;
+        --amber: #ffb347;
+        --text: #e8e8f0;
+        --muted: #6b6b8a;
+        --card: #14141f;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "DM Mono", monospace;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 40px 24px;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      header {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 32px;
+        margin-bottom: 40px;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(28px, 5vw, 52px);
+        font-weight: 900;
+        line-height: 1.05;
+        color: #fff;
+        margin-bottom: 16px;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .subtitle {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 680px;
+      }
+
+      .target-orgs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .org-pill {
+        font-size: 10px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+
+      .org-pill.fintech {
+        border-color: #00e5a040;
+        color: var(--accent);
+      }
+      .org-pill.bigtech {
+        border-color: #7c6fff40;
+        color: var(--accent2);
+      }
+
+      /* PHASE BLOCK */
+      .phase {
+        margin-bottom: 36px;
+      }
+
+      .phase-header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .phase-num {
+        font-family: "Fraunces", serif;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--border);
+        min-width: 52px;
+      }
+
+      .phase-meta {
+      }
+
+      .phase-title {
+        font-family: "Fraunces", serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 3px;
+      }
+
+      .phase-weeks {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+      }
+
+      .phase-badge {
+        font-size: 10px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+      }
+
+      .badge-green {
+        background: #00e5a015;
+        color: var(--accent);
+        border: 1px solid #00e5a030;
+      }
+      .badge-purple {
+        background: #7c6fff15;
+        color: var(--accent2);
+        border: 1px solid #7c6fff30;
+      }
+      .badge-red {
+        background: #ff6b6b15;
+        color: var(--accent3);
+        border: 1px solid #ff6b6b30;
+      }
+      .badge-amber {
+        background: #ffb34715;
+        color: var(--amber);
+        border: 1px solid #ffb34730;
+      }
+      .badge-blue {
+        background: #60a5fa15;
+        color: #60a5fa;
+        border: 1px solid #60a5fa30;
+      }
+
+      /* TABLE */
+      .curriculum-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .curriculum-table thead tr {
+        background: var(--surface);
+      }
+
+      .curriculum-table th {
+        text-align: left;
+        padding: 10px 14px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--border);
+        font-weight: 500;
+      }
+
+      .curriculum-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.15s;
+      }
+
+      .curriculum-table tbody tr:last-child {
+        border-bottom: none;
+      }
+
+      .curriculum-table tbody tr:hover {
+        background: var(--card);
+      }
+
+      .curriculum-table td {
+        padding: 11px 14px;
+        vertical-align: top;
+        line-height: 1.55;
+      }
+
+      .td-week {
+        color: var(--muted);
+        white-space: nowrap;
+        font-size: 11px;
+        min-width: 60px;
+      }
+
+      .td-topic {
+        color: #fff;
+        font-weight: 500;
+        min-width: 160px;
+      }
+
+      .td-do {
+        color: var(--text);
+        min-width: 240px;
+      }
+
+      .td-tool {
+        color: var(--muted);
+        font-size: 11px;
+        min-width: 120px;
+      }
+
+      .td-deliverable {
+        min-width: 160px;
+      }
+
+      .td-ai {
+        min-width: 140px;
+      }
+
+      .pill {
+        display: inline-block;
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 12px;
+        margin: 2px 2px 2px 0;
+        white-space: nowrap;
+      }
+
+      .pill-green {
+        background: #00e5a015;
+        color: var(--accent);
+        border: 1px solid #00e5a025;
+      }
+      .pill-purple {
+        background: #7c6fff15;
+        color: var(--accent2);
+        border: 1px solid #7c6fff25;
+      }
+      .pill-amber {
+        background: #ffb34715;
+        color: var(--amber);
+        border: 1px solid #ffb34725;
+      }
+      .pill-red {
+        background: #ff6b6b15;
+        color: var(--accent3);
+        border: 1px solid #ff6b6b25;
+      }
+      .pill-blue {
+        background: #60a5fa15;
+        color: #60a5fa;
+        border: 1px solid #60a5fa25;
+      }
+      .pill-gray {
+        background: #1e1e2e;
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+
+      .deliverable-tag {
+        font-size: 10px;
+        color: var(--accent);
+        background: #00e5a010;
+        border: 1px solid #00e5a020;
+        padding: 3px 8px;
+        border-radius: 6px;
+        display: inline-block;
+      }
+
+      /* MILESTONE BANNER */
+      .milestone {
+        margin: 12px 0 28px;
+        padding: 14px 18px;
+        background: linear-gradient(90deg, #00e5a008, transparent);
+        border-left: 2px solid var(--accent);
+        border-radius: 0 6px 6px 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .milestone strong {
+        color: var(--accent);
+      }
+
+      /* FOOTER */
+      footer {
+        margin-top: 48px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        font-size: 12px;
+      }
+
+      .footer-block h3 {
+        font-family: "Fraunces", serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .footer-block ul {
+        list-style: none;
+        color: var(--muted);
+        line-height: 2;
+      }
+
+      .footer-block ul li::before {
+        content: "→ ";
+        color: var(--accent);
+      }
+
+      .legend {
+        margin-top: 28px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 20px 12px;
+        }
+        .td-tool,
+        .td-ai {
+          display: none;
+        }
+        footer {
+          grid-template-columns: 1fr;
+        }
+      }
+      .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        text-decoration: none;
+        margin-bottom: 20px;
+        letter-spacing: 0.05em;
+      }
+      .back-home:hover {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <a class="back-home" href="../index.html">&larr; Levelcraft home</a>
+
+      <header>
+        <p class="eyebrow">9-Month Roadmap</p>
+        <h1>Junior Full-Stack<br /><span>Engineer</span> Curriculum</h1>
+        <p class="subtitle">
+          Built from real job requirements at the top 50 fintechs and top 50
+          tech companies globally. Every skill maps to what hiring managers are
+          actually screening for — with AI/ML woven throughout.
+        </p>
+        <div class="target-orgs">
+          <span class="org-pill fintech">Stripe</span>
+          <span class="org-pill fintech">Revolut</span>
+          <span class="org-pill fintech">Monzo</span>
+          <span class="org-pill fintech">Plaid</span>
+          <span class="org-pill fintech">Wise</span>
+          <span class="org-pill fintech">Robinhood</span>
+          <span class="org-pill fintech">Klarna</span>
+          <span class="org-pill fintech">Adyen</span>
+          <span class="org-pill fintech">Nubank</span>
+          <span class="org-pill fintech">Chime</span>
+          <span class="org-pill fintech">Coinbase</span>
+          <span class="org-pill fintech">Block/Square</span>
+          <span class="org-pill fintech">SoFi</span>
+          <span class="org-pill fintech">Brex</span>
+          <span class="org-pill fintech">Checkout.com</span>
+          <span class="org-pill bigtech">Google</span>
+          <span class="org-pill bigtech">Meta</span>
+          <span class="org-pill bigtech">Amazon</span>
+          <span class="org-pill bigtech">Microsoft</span>
+          <span class="org-pill bigtech">Apple</span>
+          <span class="org-pill bigtech">Netflix</span>
+          <span class="org-pill bigtech">Shopify</span>
+          <span class="org-pill bigtech">Salesforce</span>
+          <span class="org-pill bigtech">Atlassian</span>
+          <span class="org-pill bigtech">Datadog</span>
+          <span class="org-pill bigtech">Vercel</span>
+          <span class="org-pill bigtech">Supabase</span>
+          <span class="org-pill bigtech">Cloudflare</span>
+          <span class="org-pill bigtech">OpenAI</span>
+          <span class="org-pill bigtech">Anthropic</span>
+        </div>
+      </header>
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">1</div>
+          <div class="phase-meta">
+            <div class="phase-title">Foundations — The Language of the Web</div>
+            <div class="phase-weeks">Weeks 1–4 · Month 1</div>
+          </div>
+          <span class="phase-badge badge-green">START HERE</span>
+        </div>
+        <table class="curriculum-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>What You Do</th>
+              <th>Tools / Resources</th>
+              <th>Deliverable</th>
+              <th>AI Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-week">Wk 1</td>
+              <td class="td-topic">HTML + CSS Mastery</td>
+              <td class="td-do">
+                Build 3 real UI pages: landing page, dashboard shell, pricing
+                table
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-gray">MDN Web Docs</span
+                ><span class="pill pill-gray">CSS Tricks</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">3 static pages on GitHub</span>
+              </td>
+              <td class="td-ai">
+                Use GitHub Copilot to autocomplete CSS — learn to edit and
+                understand every suggestion
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 2</td>
+              <td class="td-topic">JavaScript Core</td>
+              <td class="td-do">
+                DOM, events, fetch API, async/await. Clone a live crypto price
+                ticker (like Coinbase UI)
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-gray">javascript.info</span
+                ><span class="pill pill-gray">CoinGecko API</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Live crypto ticker app</span>
+              </td>
+              <td class="td-ai">
+                Use Claude to debug errors — but write fixes yourself
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 3</td>
+              <td class="td-topic">TypeScript Basics</td>
+              <td class="td-do">
+                Types, interfaces, generics. Refactor week 2 project to
+                TypeScript
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-gray">TypeScript Handbook</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >TypeScript refactor on GitHub</span
+                >
+              </td>
+              <td class="td-ai">
+                Ask AI to explain type errors — become fluent reading TS error
+                messages
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 4</td>
+              <td class="td-topic">Git + Command Line</td>
+              <td class="td-do">
+                Branching, PRs, merge conflicts. Commit your first project with
+                proper commit messages
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-gray">Pro Git (free)</span
+                ><span class="pill pill-gray">GitHub</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Clean GitHub profile + first repo</span
+                >
+              </td>
+              <td class="td-ai">
+                Generate a .gitignore and commit message templates with AI
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone">
+          ✓ <strong>Month 1 checkpoint:</strong> You can build and ship a static
+          UI. You understand the DOM, TypeScript, and version control.
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">2</div>
+          <div class="phase-meta">
+            <div class="phase-title">
+              Frontend Engineering — React Ecosystem
+            </div>
+            <div class="phase-weeks">Weeks 5–8 · Month 2</div>
+          </div>
+          <span class="phase-badge badge-purple">CORE SKILL</span>
+        </div>
+        <table class="curriculum-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>What You Do</th>
+              <th>Tools / Resources</th>
+              <th>Deliverable</th>
+              <th>AI Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-week">Wk 5</td>
+              <td class="td-topic">React Fundamentals</td>
+              <td class="td-do">
+                Components, props, state, hooks (useState, useEffect). Build a
+                personal finance dashboard UI
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-purple">react.dev</span
+                ><span class="pill pill-gray">Scrimba React</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Finance dashboard (React)</span>
+              </td>
+              <td class="td-ai">
+                Use Cursor IDE — learn AI-assisted coding workflow used at
+                Robinhood
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 6</td>
+              <td class="td-topic">Next.js + Routing</td>
+              <td class="td-do">
+                App router, server vs client components, API routes. Convert
+                dashboard to Next.js
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-purple">nextjs.org/learn</span
+                ><span class="pill pill-gray">Vercel</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Next.js app deployed on Vercel</span
+                >
+              </td>
+              <td class="td-ai">
+                Add an AI chatbot widget using Vercel AI SDK + Claude API
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 7</td>
+              <td class="td-topic">State Management + Data Fetching</td>
+              <td class="td-do">
+                React Query / TanStack, Zustand. Build a real-time portfolio
+                tracker
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-purple">TanStack Query</span
+                ><span class="pill pill-gray">Zustand docs</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Live portfolio tracker</span>
+              </td>
+              <td class="td-ai">
+                Ask AI to generate mock financial data + write data
+                transformation functions
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 8</td>
+              <td class="td-topic">UI Component Systems</td>
+              <td class="td-do">
+                Tailwind CSS, shadcn/ui. Rebuild your dashboard with a design
+                system — pixel-perfect
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-purple">Tailwind</span
+                ><span class="pill pill-gray">shadcn/ui</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Polished dashboard — portfolio piece 1</span
+                >
+              </td>
+              <td class="td-ai">
+                Prompt AI to generate Tailwind component variants; learn to
+                iterate on outputs
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone">
+          ✓ <strong>Month 2 checkpoint:</strong> You can build a full, deployed
+          React/Next.js frontend. You've used Cursor and the Vercel AI SDK —
+          tools real fintech teams use daily.
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">3</div>
+          <div class="phase-meta">
+            <div class="phase-title">
+              Backend Engineering — APIs & Databases
+            </div>
+            <div class="phase-weeks">Weeks 9–13 · Months 3–4</div>
+          </div>
+          <span class="phase-badge badge-amber">HIGH DEMAND</span>
+        </div>
+        <table class="curriculum-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>What You Do</th>
+              <th>Tools / Resources</th>
+              <th>Deliverable</th>
+              <th>AI Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-week">Wk 9</td>
+              <td class="td-topic">Node.js + Express</td>
+              <td class="td-do">
+                REST APIs, middleware, error handling. Build a payment
+                transaction API (Stripe-style)
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-amber">Node.js docs</span
+                ><span class="pill pill-gray">Postman</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Transaction REST API</span>
+              </td>
+              <td class="td-ai">
+                Generate OpenAPI spec with AI; use it to document your API
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 10</td>
+              <td class="td-topic">PostgreSQL + SQL</td>
+              <td class="td-do">
+                Schema design, joins, indexes, transactions. Model users,
+                accounts, transactions tables
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-amber">PostgreSQL Tutorial</span
+                ><span class="pill pill-gray">Supabase</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Relational DB schema + queries</span
+                >
+              </td>
+              <td class="td-ai">
+                Use AI to generate seed data and optimise slow queries
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 11</td>
+              <td class="td-topic">ORM + Auth</td>
+              <td class="td-do">
+                Prisma ORM, JWT auth, bcrypt password hashing. Add login/signup
+                to your API
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-amber">Prisma docs</span
+                ><span class="pill pill-gray">JWT.io</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Secure auth system</span>
+              </td>
+              <td class="td-ai">
+                Ask AI to audit your auth code for security gaps
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 12</td>
+              <td class="td-topic">Python + FastAPI</td>
+              <td class="td-do">
+                Python basics, FastAPI REST endpoints. Build a fraud-score
+                microservice (rule-based first)
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-amber">FastAPI docs</span
+                ><span class="pill pill-gray">Python.org</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Fraud detection microservice</span
+                >
+              </td>
+              <td class="td-ai">
+                Add an ML model (scikit-learn) to your fraud service — predict
+                anomalies
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 13</td>
+              <td class="td-topic">Full-Stack Integration</td>
+              <td class="td-do">
+                Connect your React frontend to Node.js backend + PostgreSQL DB.
+                End-to-end working app
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-amber">Supabase</span
+                ><span class="pill pill-gray">Vercel</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Full-stack fintech app — portfolio piece 2</span
+                >
+              </td>
+              <td class="td-ai">
+                Wire in OpenAI API for a natural-language spending insights
+                feature
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone">
+          ✓ <strong>Month 4 checkpoint:</strong> You can build and connect a
+          full backend. You've written Python, touched ML, and built an
+          AI-powered feature. This is the skill level of Stripe/Monzo interns.
+        </div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">4</div>
+          <div class="phase-meta">
+            <div class="phase-title">DevOps, Cloud & Production Thinking</div>
+            <div class="phase-weeks">Weeks 14–18 · Months 4–5</div>
+          </div>
+          <span class="phase-badge badge-blue">SEPARATES YOU</span>
+        </div>
+        <table class="curriculum-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>What You Do</th>
+              <th>Tools / Resources</th>
+              <th>Deliverable</th>
+              <th>AI Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-week">Wk 14</td>
+              <td class="td-topic">Docker</td>
+              <td class="td-do">
+                Containerise your Node.js + Python apps. Write Dockerfiles and
+                docker-compose
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-blue">Docker docs</span
+                ><span class="pill pill-gray">Play with Docker</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Dockerised microservices</span>
+              </td>
+              <td class="td-ai">
+                AI generates Dockerfile — you understand and optimise every line
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 15</td>
+              <td class="td-topic">AWS Core (or GCP)</td>
+              <td class="td-do">
+                EC2, S3, RDS, Lambda basics. Deploy your app to AWS. Get AWS
+                Cloud Practitioner cert
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-blue">AWS Free Tier</span
+                ><span class="pill pill-gray">A Cloud Guru</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">AWS-deployed app + cert</span>
+              </td>
+              <td class="td-ai">
+                Use AWS Bedrock to call a foundation model from your Lambda
+                function
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 16</td>
+              <td class="td-topic">CI/CD Pipelines</td>
+              <td class="td-do">
+                GitHub Actions: auto-test, auto-deploy on every push. Mirror
+                what Stripe engineering teams do
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-blue">GitHub Actions</span
+                ><span class="pill pill-gray">act (local test)</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Automated deploy pipeline</span>
+              </td>
+              <td class="td-ai">
+                Add an AI code-review step in the pipeline using Claude API
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 17</td>
+              <td class="td-topic">Testing</td>
+              <td class="td-do">
+                Unit tests (Vitest), integration tests (Supertest), E2E
+                (Playwright). Aim for 70%+ coverage
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-blue">Vitest</span
+                ><span class="pill pill-gray">Playwright</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Tested codebase on GitHub</span>
+              </td>
+              <td class="td-ai">
+                Generate test cases with AI — review and add edge cases yourself
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 18</td>
+              <td class="td-topic">System Design Basics</td>
+              <td class="td-do">
+                Load balancing, caching (Redis), rate limiting, webhooks. Add to
+                your fintech app
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-blue">ByteByteGo</span
+                ><span class="pill pill-gray">Redis docs</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Production-hardened app</span>
+              </td>
+              <td class="td-ai">
+                Design a simple AI rate-limiting service to protect your API
+                from abuse
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone">
+          ✓ <strong>Month 5 checkpoint:</strong> Your apps run in production on
+          AWS with automated pipelines and tests. This alone beats 80% of other
+          junior candidates.
+        </div>
+      </div>
+
+      <!-- PHASE 5 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">5</div>
+          <div class="phase-meta">
+            <div class="phase-title">AI/ML Integration — The Edge You Need</div>
+            <div class="phase-weeks">Weeks 19–23 · Months 5–6</div>
+          </div>
+          <span class="phase-badge badge-red">AI LEVER</span>
+        </div>
+        <table class="curriculum-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>What You Do</th>
+              <th>Tools / Resources</th>
+              <th>Deliverable</th>
+              <th>AI Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-week">Wk 19</td>
+              <td class="td-topic">LLM APIs + Prompt Engineering</td>
+              <td class="td-do">
+                Call OpenAI + Anthropic APIs. Build a financial document Q&amp;A
+                tool (RAG pattern)
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-red">OpenAI API</span
+                ><span class="pill pill-red">Anthropic SDK</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">RAG-powered doc assistant</span>
+              </td>
+              <td class="td-ai">Core week — everything is AI</td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 20</td>
+              <td class="td-topic">AI-Native App Patterns</td>
+              <td class="td-do">
+                Streaming responses, tool use / function calling, structured
+                outputs. Build an AI expense categoriser
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-red">Vercel AI SDK</span
+                ><span class="pill pill-gray">LangChain.js</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">AI expense categoriser</span>
+              </td>
+              <td class="td-ai">
+                Mirror how Monzo/Cleo categorise transactions using LLMs
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 21</td>
+              <td class="td-topic">Python ML Basics</td>
+              <td class="td-do">
+                scikit-learn: train a fraud detection classifier on synthetic
+                data. Evaluate precision/recall
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-red">scikit-learn</span
+                ><span class="pill pill-gray">Kaggle datasets</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >Fraud ML model + evaluation report</span
+                >
+              </td>
+              <td class="td-ai">
+                Explain your model's decisions using SHAP values — mirror
+                fintech RegTech needs
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 22</td>
+              <td class="td-topic">Vector Databases + Embeddings</td>
+              <td class="td-do">
+                Store embeddings in Supabase pgvector. Build semantic search for
+                transactions
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-red">pgvector</span
+                ><span class="pill pill-gray">OpenAI Embeddings</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Semantic search feature</span>
+              </td>
+              <td class="td-ai">
+                Foundation skill for any AI product team — Stripe, Plaid, Nubank
+                all use this
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 23</td>
+              <td class="td-topic">AI-Powered Capstone Feature</td>
+              <td class="td-do">
+                Add a full AI layer to your fintech app: chat, smart insights,
+                anomaly alerts
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-red">Claude API</span
+                ><span class="pill pill-red">OpenAI</span
+                ><span class="pill pill-gray">Supabase</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag"
+                  >AI fintech app — portfolio piece 3</span
+                >
+              </td>
+              <td class="td-ai">
+                This is your headline portfolio project. It shows full-stack +
+                AI in one
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone">
+          ✓ <strong>Month 6 checkpoint:</strong> You can build AI-powered
+          features from scratch. You understand LLMs, embeddings, and ML — a
+          rare combination for a junior engineer.
+        </div>
+      </div>
+
+      <!-- PHASE 6 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">6</div>
+          <div class="phase-meta">
+            <div class="phase-title">Interview Prep + Job Launch</div>
+            <div class="phase-weeks">Weeks 24–36 · Months 7–9</div>
+          </div>
+          <span class="phase-badge badge-green">FINISH LINE</span>
+        </div>
+        <table class="curriculum-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>What You Do</th>
+              <th>Tools / Resources</th>
+              <th>Deliverable</th>
+              <th>AI Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-week">Wk 24–26</td>
+              <td class="td-topic">Data Structures & Algorithms</td>
+              <td class="td-do">
+                Arrays, trees, graphs, dynamic programming. 2–3 LeetCode
+                problems daily. Focus: Easy then Medium
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-green">LeetCode</span
+                ><span class="pill pill-gray">NeetCode.io</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">75+ problems solved</span>
+              </td>
+              <td class="td-ai">
+                Use AI to explain solutions — not generate them. Pattern
+                recognition is key
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 27–28</td>
+              <td class="td-topic">System Design for Juniors</td>
+              <td class="td-do">
+                Design: URL shortener, payment API, real-time chat. Practice
+                explaining trade-offs out loud
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-green">ByteByteGo</span
+                ><span class="pill pill-gray">Excalidraw</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">3 design diagrams + notes</span>
+              </td>
+              <td class="td-ai">
+                Ask Claude to be the interviewer — do mock system design
+                sessions
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 29–30</td>
+              <td class="td-topic">Portfolio Polish</td>
+              <td class="td-do">
+                Clean up all 3 portfolio projects. Write READMEs. Record
+                60-second demo videos. Build a portfolio site
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-green">GitHub</span
+                ><span class="pill pill-gray">Loom</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Public portfolio website</span>
+              </td>
+              <td class="td-ai">
+                Use AI to write compelling project descriptions tailored to
+                fintech JDs
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 31–33</td>
+              <td class="td-topic">Active Applications</td>
+              <td class="td-do">
+                Apply to 5–10 roles/week. Target fintechs first (faster hiring
+                cycles). Tailor CV per application
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-green">LinkedIn</span
+                ><span class="pill pill-gray">Wellfound</span
+                ><span class="pill pill-gray">Otta</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">30+ applications sent</span>
+              </td>
+              <td class="td-ai">
+                Use AI to tailor cover letters and match your CV keywords to
+                each JD
+              </td>
+            </tr>
+            <tr>
+              <td class="td-week">Wk 34–36</td>
+              <td class="td-topic">Interviews + Offers</td>
+              <td class="td-do">
+                Technical screens, take-homes, final rounds. Do mock interviews
+                weekly. Negotiate your offer
+              </td>
+              <td class="td-tool">
+                <span class="pill pill-green">Pramp</span
+                ><span class="pill pill-gray">Interviewing.io</span>
+              </td>
+              <td class="td-deliverable">
+                <span class="deliverable-tag">Signed offer letter 🎉</span>
+              </td>
+              <td class="td-ai">
+                Run mock behavioural interviews with Claude: "Tell me about a
+                project you built"
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone">
+          ✓ <strong>Month 9 checkpoint:</strong> 3 portfolio projects live. 75+
+          DSA problems solved. Actively interviewing. You are ready.
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-block">
+          <h3>Your 3 Portfolio Projects</h3>
+          <ul>
+            <li>Polished fintech dashboard (React/Next.js/Tailwind)</li>
+            <li>Full-stack fintech app (Node.js + PostgreSQL + auth)</li>
+            <li>AI-powered fintech app (LLM + ML + embeddings)</li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h3>Certifications to Earn</h3>
+          <ul>
+            <li>AWS Cloud Practitioner (Month 4–5)</li>
+            <li>Google Associate Cloud Engineer (Month 6+)</li>
+            <li>DeepLearning.AI: LLM Engineering (parallel)</li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h3>Daily Habits That Compound</h3>
+          <ul>
+            <li>1 LeetCode problem (Months 7–9 daily)</li>
+            <li>30 min building — always ships something</li>
+            <li>Read 1 fintech engineering blog per week</li>
+            <li>Contribute 1 OSS PR per month (Month 5+)</li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h3>Top Target Companies to Apply</h3>
+          <ul>
+            <li>Stripe · Revolut · Monzo · Wise · Checkout.com</li>
+            <li>Plaid · Brex · Nubank · Adyen · Block/Square</li>
+            <li>Shopify · Vercel · Cloudflare · Atlassian</li>
+            <li>Any Series B–D fintech startup (fastest to hire)</li>
+          </ul>
+        </div>
+      </footer>
+
+      <div
+        style="
+          margin-top: 32px;
+          font-size: 11px;
+          color: #3a3a5a;
+          text-align: center;
+          padding-bottom: 12px;
+        "
+      >
+        Built from real 2026 job data · Stripe · Revolut · Monzo · Robinhood ·
+        Plaid · Google · Meta · Amazon · Microsoft · Apple · 40+ others
+      </div>
+    </div>
+  </body>
+</html>

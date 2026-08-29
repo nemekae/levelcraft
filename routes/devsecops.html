@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DevSecOps Engineer Career Track — Syllabus (2026 Edition)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    --bg: #0a0e14;
+    --surface: #10151d;
+    --surface2: #161d27;
+    --border: #232c38;
+    --border-soft: #1a212b;
+    --text: #e6edf3;
+    --text-dim: #9aa7b2;
+    --text-faint: #5c6875;
+    --amber: #e3b341;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 56px 24px 100px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; color: var(--green); margin-bottom: 14px; }
+  h1 { font-size: 30px; font-weight: 800; line-height: 1.25; margin: 0 0 6px; }
+  .subtitle { font-family: var(--mono); font-size: 13px; color: var(--text-dim); margin-bottom: 40px; }
+  h2 { font-size: 19px; font-weight: 700; margin: 48px 0 14px; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+  h2:first-of-type { border-top: none; padding-top: 0; margin-top: 36px; }
+  p { color: var(--text-dim); font-size: 14.5px; margin: 0 0 14px; }
+  strong { color: var(--text); font-weight: 600; }
+  code { font-family: var(--mono); background: var(--surface2); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 6px; font-size: 13px; color: var(--amber); }
+  ol, ul { color: var(--text-dim); font-size: 14.5px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  table { width: 100%; border-collapse: collapse; margin: 4px 0 22px; font-size: 13.5px; }
+  th { text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; color: var(--text-faint); text-transform: uppercase; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border-soft); color: var(--text-dim); vertical-align: top; }
+  td:first-child, th:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  .stage-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 8px; padding: 16px 18px; margin-bottom: 12px; }
+  .stage-card .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--amber); margin-bottom: 5px; }
+  .stage-card .name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .stage-card .desc { font-size: 13px; color: var(--text-dim); margin: 0; }
+
+  .capstone-box { background: var(--surface); border: 1px solid var(--green); border-radius: 8px; padding: 20px; margin-top: 8px; }
+  .capstone-box p { color: var(--text); margin-bottom: 0; }
+
+  .callout { background: var(--surface2); border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px 18px; font-size: 13.5px; color: var(--text-dim); margin-bottom: 20px; }
+
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-soft); font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); }
+
+  .outline-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; }
+  table.outline { width: 100%; min-width: 720px; border-collapse: collapse; margin: 0; font-size: 13px; }
+  table.outline th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.5px; color: var(--text-faint); text-transform: uppercase; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; }
+  table.outline td { padding: 12px 14px; border-bottom: 1px solid var(--border-soft); vertical-align: top; background: var(--surface); }
+  table.outline tr:last-child td { border-bottom: none; }
+  table.outline tr.stage-row td { background: var(--surface2); font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; color: var(--amber); padding: 9px 14px; border-bottom: 1px solid var(--border); border-top: 1px solid var(--border); }
+  table.outline td.week-num { font-family: var(--mono); color: var(--text-faint); font-size: 12px; white-space: nowrap; width: 46px; }
+  table.outline td.focus { font-weight: 600; color: var(--text); width: 190px; }
+  table.outline ul.modules { margin: 0; padding-left: 16px; color: var(--text-dim); font-size: 12.5px; }
+  table.outline ul.modules li { margin-bottom: 4px; }
+  table.outline td.project { font-size: 12.5px; color: var(--text-dim); width: 260px; }
+  table.outline td.project .lab-title { display: block; color: var(--text); font-weight: 600; margin-bottom: 3px; }
+  table.outline tr.capstone-row td.week-num { border-left: 3px solid var(--green); }
+  table.outline tr.capstone-row td.project .lab-title { color: var(--green); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); margin: 10px 0 24px; }
+  .legend span.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .back-home { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12px; color: var(--text-dim); text-decoration: none; margin-bottom: 22px; }
+  .back-home:hover { color: var(--blue); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back-home" href="../index.html">&larr; Levelcraft home</a>
+  <div class="eyebrow">DEVSECOPS://CAREER-TRACK · SYLLABUS</div>
+  <h1>DevSecOps Engineer Career Track</h1>
+  <div class="subtitle">Beginner → Professional · 24 Weeks · 4 Stages</div>
+
+  <p>This syllabus is the companion reference to the <strong>interactive tracker app</strong>. It explains the program design, the 2026 industry shifts it's built around, the full tool stack, and the certification path. Week-by-week topics, resource links, and deliverables live in the tracker itself.</p>
+
+  <h2>Why this curriculum, why now</h2>
+  <p>Three shifts define DevSecOps in 2026 and shape every stage of this program:</p>
+  <ol>
+    <li><strong>AI-generated code has changed the threat surface.</strong> A majority of enterprise codebases now include AI-assisted code, which means more unpredictable dependencies and less human review per line shipped. Engineers need to secure code they didn't fully write, not just code they did.</li>
+    <li><strong>Supply chain security is no longer optional.</strong> SBOMs, artifact signing (Sigstore), and provenance attestation (SLSA) have moved from "advanced topic" to baseline expectation after incidents like Log4Shell, SolarWinds, and the xz-utils backdoor.</li>
+    <li><strong>Platform engineering is absorbing DevSecOps.</strong> Rather than security being a separate gate, internal developer platforms (Backstage, golden paths, policy-as-code) are baking security, compliance, and cost controls directly into the paved road developers already use.</li>
+  </ol>
+  <p>This program is sequenced so each stage builds the prerequisite for the next: you can't secure a Kubernetes cluster (Stage 3) before you can operate Linux and Docker (Stage 1), and you can't design a golden path (Stage 4) before you've built the pipeline it wraps (Stage 2).</p>
+
+  <h2>Program structure</h2>
+  <ul>
+    <li><strong>Format:</strong> 4 theory/concept days + 1 hands-on lab day per week</li>
+    <li><strong>Length:</strong> 24 weeks (~6 months at a sustainable pace; compress to ~4 months at higher intensity)</li>
+    <li><strong>Each stage:</strong> ends in a capstone lab that integrates everything learned that stage</li>
+    <li><strong>Tracking:</strong> use the companion web app to check off each day, mark labs complete, and log deliverable links/notes — your progress saves automatically in your browser</li>
+  </ul>
+
+  <div class="stage-card">
+    <div class="tag">STAGE 01 · WEEKS 1–6 · BEGINNER</div>
+    <div class="name">Build</div>
+    <p class="desc">Linux, Git, cloud & networking fundamentals, AppSec basics, first container hardening project</p>
+  </div>
+  <div class="stage-card">
+    <div class="tag">STAGE 02 · WEEKS 7–12 · INTERMEDIATE</div>
+    <div class="name">Integrate</div>
+    <p class="desc">CI/CD, SAST/SCA/DAST, secrets management, IaC, policy-as-code</p>
+  </div>
+  <div class="stage-card">
+    <div class="tag">STAGE 03 · WEEKS 13–18 · ADVANCED</div>
+    <div class="name">Operate</div>
+    <p class="desc">Kubernetes hardening, zero trust, supply-chain signing, CNAPP, GitOps, incident response</p>
+  </div>
+  <div class="stage-card">
+    <div class="tag">STAGE 04 · WEEKS 19–24 · PROFESSIONAL</div>
+    <div class="name">Scale</div>
+    <p class="desc">AI/LLM security, platform engineering, threat hunting, compliance-as-code, certification, capstone</p>
+  </div>
+
+  <h2>Weekly Curriculum Outline</h2>
+  <p>Every week runs the same rhythm: four core-module days building toward the week's focus, then a Day 5 hands-on project that turns it into something shippable. Weeks 6, 12, and 18 close their stage with an integrative capstone; Week 24 is the final capstone.</p>
+
+  <div class="legend"><span><span class="dot" style="background:var(--green)"></span>Capstone week</span></div>
+
+  <div class="outline-wrap">
+  <table class="outline">
+    <tr><th>Wk</th><th>Weekly Focus</th><th>Core Modules (Days 1–4)</th><th>Hands-On Project (Day 5)</th></tr>
+
+    <tr class="stage-row"><td colspan="4">STAGE 01 — BUILD · BEGINNER</td></tr>
+    <tr><td class="week-num">01</td><td class="focus">DevSecOps Mindset & Linux Fundamentals</td>
+      <td><ul class="modules"><li>What Is DevSecOps?</li><li>SDLC & Agile Basics</li><li>Linux I — Filesystem, Users, Permissions</li><li>Linux II — Processes & Shell Basics</li></ul></td>
+      <td class="project"><span class="lab-title">Bandit Wargame + Bash Toolkit</span>Complete Bandit levels 0–10 and write 5 automation scripts.</td></tr>
+    <tr><td class="week-num">02</td><td class="focus">Git, GitHub & Version-Control Security</td>
+      <td><ul class="modules"><li>Git Fundamentals</li><li>GitHub Workflows</li><li>Secrets in Repos</li><li>Commit Signing & Supply-Chain Intro</li></ul></td>
+      <td class="project"><span class="lab-title">Harden a Repository</span>Branch protection, pre-commit secret scanning, leak simulation & remediation.</td></tr>
+    <tr><td class="week-num">03</td><td class="focus">Networking & Cloud Fundamentals</td>
+      <td><ul class="modules"><li>TCP/IP, DNS & TLS</li><li>Cloud Models & Shared Responsibility</li><li>IAM Fundamentals</li><li>Cloud Networking</li></ul></td>
+      <td class="project"><span class="lab-title">Build a Segmented VPC</span>Public/private subnets + least-privilege IAM role.</td></tr>
+    <tr><td class="week-num">04</td><td class="focus">Programming for Automation (Python & Bash)</td>
+      <td><ul class="modules"><li>Python Essentials</li><li>Python for Security Automation</li><li>Bash Scripting for Pipelines</li><li>Working with APIs, JSON & YAML</li></ul></td>
+      <td class="project"><span class="lab-title">CVE Report Generator</span>Python CLI that queries the NVD API and prints a vulnerability summary.</td></tr>
+    <tr><td class="week-num">05</td><td class="focus">AppSec Fundamentals — OWASP Top 10</td>
+      <td><ul class="modules"><li>Injection & Broken Access Control</li><li>XSS & SSRF</li><li>Insecure Design & Misconfiguration</li><li>Threat Modeling Basics (STRIDE)</li></ul></td>
+      <td class="project"><span class="lab-title">Exploit & Threat-Model</span>3 PortSwigger labs + a one-page STRIDE threat model.</td></tr>
+    <tr class="capstone-row"><td class="week-num">06</td><td class="focus">Containers Fundamentals</td>
+      <td><ul class="modules"><li>Docker Basics</li><li>Container Security Basics</li><li>Docker Compose</li><li>Image Scanning with Trivy</li></ul></td>
+      <td class="project"><span class="lab-title">★ Phase Capstone — Harden a Vulnerable App</span>Containerize Juice Shop, scan with Trivy, harden the Dockerfile.</td></tr>
+
+    <tr class="stage-row"><td colspan="4">STAGE 02 — INTEGRATE · INTERMEDIATE</td></tr>
+    <tr><td class="week-num">07</td><td class="focus">CI/CD Foundations</td>
+      <td><ul class="modules"><li>CI/CD Concepts</li><li>GitHub Actions Deep Dive</li><li>GitLab CI / Jenkins Alternatives</li><li>Pipeline Security</li></ul></td>
+      <td class="project"><span class="lab-title">Build Your First Secure Pipeline</span>Lint → test → build → scan → deploy for a sample app.</td></tr>
+    <tr><td class="week-num">08</td><td class="focus">SAST & Secure Coding</td>
+      <td><ul class="modules"><li>Static Analysis Concepts</li><li>Semgrep & CodeQL</li><li>Secure Coding Practices</li><li>Gating the Build on SAST</li></ul></td>
+      <td class="project"><span class="lab-title">Add SAST Gates</span>Integrate Semgrep + CodeQL, triage findings, fix top 5 issues.</td></tr>
+    <tr><td class="week-num">09</td><td class="focus">Software Composition Analysis & SBOMs</td>
+      <td><ul class="modules"><li>Dependency Risk</li><li>SCA Tooling</li><li>SBOMs — CycloneDX & SPDX</li><li>License Compliance Basics</li></ul></td>
+      <td class="project"><span class="lab-title">Generate & Remediate an SBOM</span>Scan with Snyk/Dependency-Check, fix critical CVEs.</td></tr>
+    <tr><td class="week-num">10</td><td class="focus">Kubernetes Fundamentals</td>
+      <td><ul class="modules"><li>Kubernetes Architecture</li><li>kubectl & Manifests</li><li>RBAC Introduction</li><li>Namespaces & Quotas</li></ul></td>
+      <td class="project"><span class="lab-title">Deploy to a Local Cluster</span>Ship the hardened Juice Shop container to kind/minikube.</td></tr>
+    <tr><td class="week-num">11</td><td class="focus">Secrets Management & Infrastructure as Code</td>
+      <td><ul class="modules"><li>Secrets Management Principles</li><li>HashiCorp Vault Fundamentals</li><li>Terraform Fundamentals</li><li>IaC Security Scanning</li></ul></td>
+      <td class="project"><span class="lab-title">Provision & Scan Infrastructure</span>Terraform + Vault secrets, clean Checkov scan.</td></tr>
+    <tr class="capstone-row"><td class="week-num">12</td><td class="focus">DAST & Policy as Code</td>
+      <td><ul class="modules"><li>Dynamic Analysis Concepts</li><li>Automating ZAP in Pipelines</li><li>Policy as Code (OPA/Conftest)</li><li>Compliance Frameworks Overview</li></ul></td>
+      <td class="project"><span class="lab-title">★ Phase Capstone — Full Security Pipeline</span>SAST + SCA + IaC + DAST + OPA gate, deployed to K8s.</td></tr>
+
+    <tr class="stage-row"><td colspan="4">STAGE 03 — OPERATE · ADVANCED</td></tr>
+    <tr><td class="week-num">13</td><td class="focus">Kubernetes Security Deep Dive</td>
+      <td><ul class="modules"><li>RBAC & Service Accounts</li><li>Pod Security & Admission Control</li><li>Network Policies & Segmentation</li><li>Runtime Security with Falco</li></ul></td>
+      <td class="project"><span class="lab-title">Harden the Cluster</span>Pod Security Standards, Kyverno, default-deny NetworkPolicies, Falco rule.</td></tr>
+    <tr><td class="week-num">14</td><td class="focus">Service Mesh & Zero Trust</td>
+      <td><ul class="modules"><li>Zero Trust Architecture</li><li>Service Mesh Concepts</li><li>mTLS & Workload Identity</li><li>API Gateway Security</li></ul></td>
+      <td class="project"><span class="lab-title">Enforce mTLS</span>Install Istio, enforce strict mTLS, apply authorization policies.</td></tr>
+    <tr><td class="week-num">15</td><td class="focus">Software Supply Chain Security</td>
+      <td><ul class="modules"><li>Supply-Chain Attack Case Studies</li><li>The SLSA Framework</li><li>Artifact Signing with Sigstore</li><li>In-Toto Attestations</li></ul></td>
+      <td class="project"><span class="lab-title">Sign & Verify Your Images</span>cosign signing + SLSA provenance + Kyverno verification policy.</td></tr>
+    <tr><td class="week-num">16</td><td class="focus">CNAPP & Cloud Security Posture</td>
+      <td><ul class="modules"><li>CNAPP Concepts</li><li>CSPM Fundamentals</li><li>Runtime Protection & eBPF</li><li>CIS Benchmarks</li></ul></td>
+      <td class="project"><span class="lab-title">Run a Posture Assessment</span>Prowler scan, remediate top findings, re-scan to confirm.</td></tr>
+    <tr><td class="week-num">17</td><td class="focus">GitOps & Observability</td>
+      <td><ul class="modules"><li>GitOps Principles</li><li>ArgoCD in Practice</li><li>Observability Fundamentals</li><li>Security Monitoring / SIEM Basics</li></ul></td>
+      <td class="project"><span class="lab-title">GitOps + Instrumented Deploy</span>ArgoCD signed-commit deploys + OpenTelemetry + Wazuh/ELK logging.</td></tr>
+    <tr class="capstone-row"><td class="week-num">18</td><td class="focus">Incident Response & Chaos Engineering</td>
+      <td><ul class="modules"><li>Incident Response Fundamentals</li><li>Chaos Engineering Principles</li><li>Security Chaos Engineering</li><li>Blameless Postmortems</li></ul></td>
+      <td class="project"><span class="lab-title">★ Phase Capstone — Simulated Breach</span>Simulate an attack, detect with Falco, respond, run a chaos experiment.</td></tr>
+
+    <tr class="stage-row"><td colspan="4">STAGE 04 — SCALE · PROFESSIONAL</td></tr>
+    <tr><td class="week-num">19</td><td class="focus">AI & LLM Security</td>
+      <td><ul class="modules"><li>OWASP Top 10 for LLM Applications</li><li>Prompt Injection & Data Poisoning</li><li>Securing AI-Generated Code</li><li>AI Agent Governance</li></ul></td>
+      <td class="project"><span class="lab-title">Audit AI-Generated Code</span>Custom Semgrep ruleset for AI-code smells + governance doc.</td></tr>
+    <tr><td class="week-num">20</td><td class="focus">Platform Engineering & Internal Developer Platforms</td>
+      <td><ul class="modules"><li>Platform Engineering Principles</li><li>Backstage Fundamentals</li><li>Golden Paths & Self-Service Guardrails</li><li>Measuring Developer Experience</li></ul></td>
+      <td class="project"><span class="lab-title">Stand Up a Golden Path</span>Backstage template scaffolding a service with your pipeline pre-wired in.</td></tr>
+    <tr><td class="week-num">21</td><td class="focus">Advanced Threat Detection & Purple Teaming</td>
+      <td><ul class="modules"><li>MITRE ATT&CK for Cloud-Native</li><li>Threat Hunting Fundamentals</li><li>Red Team Basics: Attacking Kubernetes</li><li>Blue Team Detection Engineering</li></ul></td>
+      <td class="project"><span class="lab-title">Purple Team Exercise</span>Run Kubernetes Goat attacks, write detection rules for each.</td></tr>
+    <tr><td class="week-num">22</td><td class="focus">FinOps, Compliance-as-Code & Governance</td>
+      <td><ul class="modules"><li>FinOps for DevSecOps Engineers</li><li>Compliance-as-Code at Scale</li><li>Automated Audit Evidence</li><li>Communicating Risk to Stakeholders</li></ul></td>
+      <td class="project"><span class="lab-title">Build a Compliance-as-Code Pack</span>OPA policy pack mapped to a framework + automated evidence report.</td></tr>
+    <tr><td class="week-num">23</td><td class="focus">Certification Prep & Portfolio</td>
+      <td><ul class="modules"><li>CKA/CKS Domain Review</li><li>Cloud Security Certification Prep</li><li>Building Your Portfolio</li><li>Mock System Design Interview</li></ul></td>
+      <td class="project"><span class="lab-title">Full Practice Exam</span>Complete CKS practice exam + focused labs on weak domains.</td></tr>
+    <tr class="capstone-row"><td class="week-num">24</td><td class="focus">Capstone — Secure Platform Build</td>
+      <td><ul class="modules"><li>Architecture & Threat Model</li><li>Tool Selection & Scaffolding</li><li>Build Sprint I</li><li>Build Sprint II</li></ul></td>
+      <td class="project"><span class="lab-title">★ Final Capstone — The Paved Road</span>Backstage → CI/CD gates → signed container → GitOps deploy → monitoring → compliance report.</td></tr>
+  </table>
+  </div>
+
+  <h2>Core tool stack</h2>
+  <p>All tools below have a free or open-source tier used throughout the program.</p>
+  <table>
+    <tr><th>Category</th><th>Tools</th></tr>
+    <tr><td>CI/CD</td><td>GitHub Actions, GitLab CI</td></tr>
+    <tr><td>SAST</td><td>Semgrep, CodeQL</td></tr>
+    <tr><td>SCA / SBOM</td><td>Snyk, OWASP Dependency-Check, CycloneDX</td></tr>
+    <tr><td>Container security</td><td>Docker, Trivy</td></tr>
+    <tr><td>IaC</td><td>Terraform, Checkov</td></tr>
+    <tr><td>Secrets</td><td>HashiCorp Vault, gitleaks</td></tr>
+    <tr><td>Kubernetes</td><td>kind / minikube, Kyverno, Falco, Cilium</td></tr>
+    <tr><td>Service mesh / zero trust</td><td>Istio, SPIFFE/SPIRE</td></tr>
+    <tr><td>Supply chain</td><td>Sigstore / cosign, in-toto, SLSA</td></tr>
+    <tr><td>CNAPP / posture</td><td>Prowler, CIS Benchmarks</td></tr>
+    <tr><td>GitOps / observability</td><td>ArgoCD, OpenTelemetry, Wazuh</td></tr>
+    <tr><td>Policy as code</td><td>Open Policy Agent, Conftest</td></tr>
+    <tr><td>Platform engineering</td><td>Backstage</td></tr>
+    <tr><td>DAST</td><td>OWASP ZAP</td></tr>
+  </table>
+
+  <h2>Core knowledge references</h2>
+  <p>Used across multiple weeks of the program:</p>
+  <ul>
+    <li><strong>OWASP</strong> — Top 10, API Security Top 10, GenAI Security Project, Cheat Sheet Series (<a href="https://owasp.org" target="_blank" rel="noopener">owasp.org</a>)</li>
+    <li><strong>PortSwigger Web Security Academy</strong> — free hands-on exploitation labs (<a href="https://portswigger.net/web-security" target="_blank" rel="noopener">portswigger.net/web-security</a>)</li>
+    <li><strong>CNCF</strong> — Cloud Native Security Whitepaper, TAG Security guidance (<a href="https://www.cncf.io" target="_blank" rel="noopener">cncf.io</a>)</li>
+    <li><strong>NIST</strong> — SP 800-207 (Zero Trust), AI Risk Management Framework, Cybersecurity Framework (<a href="https://www.nist.gov" target="_blank" rel="noopener">nist.gov</a>)</li>
+    <li><strong>MITRE ATT&CK</strong> — attacker tactics/techniques reference (<a href="https://attack.mitre.org" target="_blank" rel="noopener">attack.mitre.org</a>)</li>
+    <li><strong>SLSA / Sigstore / in-toto</strong> — Linux Foundation supply-chain security projects</li>
+    <li><strong>DORA.dev</strong> — engineering performance metrics from Google (<a href="https://dora.dev" target="_blank" rel="noopener">dora.dev</a>)</li>
+    <li><strong>SANS</strong> — Incident Handler's Handbook and threat-hunting resources (free papers)</li>
+  </ul>
+
+  <h2>Certification roadmap</h2>
+  <p>Layer certifications on top of the curriculum rather than studying for them in isolation — by Week 23 you'll have already done most of the hands-on work each exam tests.</p>
+  <table>
+    <tr><th>Certification</th><th>When</th></tr>
+    <tr><td>AWS Certified Cloud Practitioner</td><td>Optional, after Week 3 (cloud fundamentals)</td></tr>
+    <tr><td>Certified Kubernetes Administrator (CKA)</td><td>After Week 10 (Kubernetes fundamentals)</td></tr>
+    <tr><td>Certified Kubernetes Security Specialist (CKS)</td><td>After Week 13 — the highest-signal cert for a DevSecOps role in 2026</td></tr>
+    <tr><td>AWS Security – Specialty / Azure AZ-500</td><td>After Week 16 (CNAPP / cloud posture)</td></tr>
+    <tr><td>OpenSSF / Linux Foundation supply-chain credentials</td><td>Optional, as they mature</td></tr>
+  </table>
+
+  <h2>How to use the tracker</h2>
+  <ol>
+    <li>Open the tracker app and enter your name to initialize your environment — progress saves automatically after that.</li>
+    <li>Each week card shows a status ring: gray (not started), amber (in progress), green (complete).</li>
+    <li>Click a week to open Days 1–4 (check off each as you study, click through to the linked resource) and the Day 5 hands-on lab (check off when done, paste your repo link or notes).</li>
+    <li>Use the reset control if you want to start the tracker over — this only clears the checklist state, not your own repos or this syllabus.</li>
+  </ol>
+
+  <div class="callout">The tracker stores your progress in this browser's local storage. It won't sync across devices or browsers — if you switch machines, your checklist starts fresh there, though your linked repos and notes remain wherever you saved them.</div>
+
+  <h2>Capstone — Week 24</h2>
+  <div class="capstone-box">
+    <p>Ship one integrated "paved road" platform: <strong>Backstage golden-path template → CI/CD with SAST + SCA + IaC + DAST + policy gates → signed & attested container (cosign/SLSA) → GitOps deploy (ArgoCD) to a hardened Kubernetes cluster → Falco + OpenTelemetry monitoring → automated compliance evidence report.</strong></p>
+  </div>
+  <p>This is the artifact you put in front of a hiring manager: one repo that demonstrates every layer of the 2026 DevSecOps stack working together.</p>
+
+  <footer>DEVSECOPS CAREER TRACK</footer>
+</div>
+</body>
+</html>

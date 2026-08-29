@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Product Security Engineering — Learning Curriculum Tracker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root{
+    --navy-1:#050a16;
+    --navy-2:#0a1330;
+    --white:#ffffff;
+    --gray-100:#f4f6fa;
+    --gray-200:#e8ecf3;
+    --gray-400:#9aa5b8;
+    --gray-600:#5b6577;
+    --gray-800:#1f2531;
+
+    --beginner:#1f9d55;
+    --beginner-bg:#eafaf0;
+    --beginner-border:#bfe8cf;
+
+    --inter:#e8960c;
+    --inter-bg:#fff6e6;
+    --inter-border:#f6ddad;
+
+    --pro:#e02749;
+    --pro-bg:#fdecef;
+    --pro-border:#f6c6ce;
+
+    --grad-start:#4fb3f7;
+    --grad-end:#b478f0;
+
+    --card-border:#e6e9f0;
+    --shadow: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--white);
+    color:var(--gray-800);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ul{ margin:0; padding:0; list-style:none; }
+
+  /* ---------- HEADER ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(1200px 500px at 15% -20%, #16224a 0%, transparent 60%),
+               linear-gradient(180deg, var(--navy-2) 0%, var(--navy-1) 100%);
+    color:var(--white);
+    padding:34px 40px 30px;
+    overflow:hidden;
+  }
+  .hero-lines{
+    position:absolute; inset:0; opacity:.25; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(120,170,255,0.14) 0px, rgba(120,170,255,0.14) 1px, transparent 1px, transparent 90px);
+  }
+  .hero-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;
+    position:relative; z-index:1;
+  }
+  .hero-left{ display:flex; gap:22px; align-items:flex-start; }
+  .hero-shield{
+    flex-shrink:0; width:76px; height:76px; border-radius:20px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg, rgba(79,179,247,0.12), rgba(180,120,240,0.12));
+    border:1px solid rgba(140,180,255,0.35);
+  }
+  .hero-title h1{
+    margin:0; font-size:32px; font-weight:800; line-height:1.15; color:var(--white);
+  }
+  .hero-title h1.gradient{
+    margin:0; font-size:38px; font-weight:900; line-height:1.15;
+    background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{ margin:14px 0 0; font-size:13.5px; color:#c3cde3; }
+  .hero-actions{ display:flex; gap:10px; flex-shrink:0; }
+  .btn{
+    display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600;
+    padding:9px 16px; border-radius:8px; cursor:pointer; white-space:nowrap; border:1px solid transparent;
+    font-family:inherit;
+  }
+  .btn-outline{ background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.25); color:var(--white); }
+  .btn-outline:hover{ background:rgba(255,255,255,0.1); }
+  .btn-fill{ background:linear-gradient(90deg,#5b8bff,#a86bf0); color:var(--white); border:none; }
+  .btn-fill:hover{ filter:brightness(1.08); }
+
+  .badge-row{
+    display:flex; gap:14px; flex-wrap:wrap; margin-top:22px; position:relative; z-index:1;
+  }
+  .badge-pill{
+    display:flex; align-items:center; gap:8px; font-size:12px; font-weight:500; color:#dbe3f5;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15);
+    padding:7px 14px; border-radius:20px;
+  }
+  .badge-pill svg{ flex-shrink:0; }
+
+  /* ---------- SECTIONS ---------- */
+  .section{ padding:36px 40px 8px; max-width:1280px; margin:0 auto; }
+  .section-header{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+  .section-head-left{ display:flex; gap:14px; align-items:flex-start; }
+  .section-icon{
+    flex-shrink:0; width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:#fff;
+  }
+  .section-title{ font-size:19px; font-weight:800; letter-spacing:0.3px; margin:2px 0 4px; text-transform:uppercase; }
+  .section-desc{ font-size:13px; color:var(--gray-600); margin:0; }
+  .module-badge{
+    flex-shrink:0; color:#fff; font-size:12px; font-weight:700; padding:7px 16px; border-radius:20px; white-space:nowrap;
+  }
+
+  .card-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:20px;
+  }
+  .card{
+    background:var(--white); border:1px solid var(--card-border); border-radius:12px; padding:16px 16px 18px;
+    box-shadow:var(--shadow);
+  }
+  .card-head{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .card-icon{ flex-shrink:0; width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+  .card-title{ font-size:13.5px; font-weight:700; line-height:1.3; color:var(--gray-800); }
+  .checklist li{ display:flex; align-items:flex-start; gap:8px; font-size:12px; color:#3d4451; margin-bottom:7px; line-height:1.4; }
+  .checklist li:last-child{ margin-bottom:0; }
+  .checklist input[type="checkbox"]{ margin-top:2px; width:14px; height:14px; flex-shrink:0; cursor:pointer; }
+  .checklist label{ cursor:pointer; }
+  .checklist input:checked + label{ color:var(--gray-400); text-decoration:line-through; }
+
+  .milestone{
+    display:flex; align-items:center; gap:10px; padding:13px 18px; border-radius:8px; font-size:12.5px;
+    margin-bottom:36px; border-left:4px solid;
+  }
+  .milestone svg{ flex-shrink:0; }
+  .milestone strong{ font-weight:700; }
+
+  /* section theme helpers */
+  .theme-beginner .section-icon{ background:var(--beginner); }
+  .theme-beginner .section-title{ color:var(--beginner); }
+  .theme-beginner .module-badge{ background:var(--beginner); }
+  .theme-beginner .milestone{ background:var(--beginner-bg); border-color:var(--beginner); color:#175c37; }
+  .theme-beginner .checklist input[type="checkbox"]{ accent-color:var(--beginner); }
+
+  .theme-inter .section-icon{ background:var(--inter); }
+  .theme-inter .section-title{ color:var(--inter); }
+  .theme-inter .module-badge{ background:var(--inter); }
+  .theme-inter .milestone{ background:var(--inter-bg); border-color:var(--inter); color:#8a5a06; }
+  .theme-inter .checklist input[type="checkbox"]{ accent-color:var(--inter); }
+
+  .theme-pro .section-icon{ background:var(--pro); }
+  .theme-pro .section-title{ color:var(--pro); }
+  .theme-pro .module-badge{ background:var(--pro); }
+  .theme-pro .milestone{ background:var(--pro-bg); border-color:var(--pro); color:#941a32; }
+  .theme-pro .checklist input[type="checkbox"]{ accent-color:var(--pro); }
+
+  /* varied card icon colors for visual rhythm, independent of section theme */
+  .ic-teal{ background:#e3f6f6; color:#0f8f8f; }
+  .ic-green{ background:#e7f8ee; color:#1f9d55; }
+  .ic-blue{ background:#e8f1ff; color:#2f6fed; }
+  .ic-orange{ background:#fff1e2; color:#e0781f; }
+  .ic-purple{ background:#f1eaff; color:#7c4fe0; }
+  .ic-gray{ background:#eef0f4; color:#586074; }
+  .ic-red{ background:#fdecec; color:#d23a3a; }
+  .ic-amber{ background:#fff6e0; color:#c9860a; }
+  .ic-pink{ background:#ffeaf1; color:#d43d78; }
+  .ic-navy{ background:#e8ecfb; color:#3446b0; }
+
+  /* ---------- FOOTER GRID ---------- */
+  .footer-grid{
+    background:var(--gray-100); padding:34px 40px; margin-top:10px;
+    display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:30px;
+  }
+  .footer-col h4{
+    font-size:11px; font-weight:800; letter-spacing:0.8px; color:var(--gray-800); margin:0 0 16px;
+  }
+  .progression{ display:flex; align-items:center; gap:8px; }
+  .prog-step{ display:flex; flex-direction:column; align-items:center; gap:8px; width:82px; text-align:center; }
+  .prog-circle{ width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; }
+  .prog-label{ font-size:11px; font-weight:700; color:var(--gray-800); }
+  .prog-sub{ font-size:9.5px; color:var(--gray-600); }
+  .prog-arrow{ color:var(--gray-400); flex-shrink:0; }
+
+  .footer-list li{ display:flex; align-items:flex-start; gap:7px; font-size:12px; color:#3d4451; margin-bottom:9px; line-height:1.4; }
+  .footer-list li svg{ flex-shrink:0; margin-top:2px; color:var(--gray-600); }
+
+  .track-progress p{ font-size:12px; color:var(--gray-600); margin:0 0 14px; line-height:1.5; }
+  .progress-track{ height:8px; border-radius:6px; background:#e2e6ee; overflow:hidden; margin-bottom:6px; }
+  .progress-fill{ height:100%; background:linear-gradient(90deg,#1f9d55,#4fb3a0); width:0%; transition:width .3s ease; border-radius:6px; }
+  .progress-labels{ display:flex; justify-content:space-between; font-size:10.5px; color:var(--gray-400); font-weight:600; }
+
+  /* ---------- BOTTOM BAR ---------- */
+  .bottom-bar{
+    background:var(--navy-1); color:#c3cde3; padding:16px 40px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px;
+  }
+  .bottom-bar .socials{ display:flex; align-items:center; gap:14px; }
+  .bottom-bar .socials a{ display:flex; color:#c3cde3; }
+  .bottom-bar .socials a:hover{ color:#fff; }
+
+  @media (max-width: 1100px){
+    .card-grid{ grid-template-columns:repeat(2,1fr); }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 620px){
+    .card-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr; }
+    .hero{ padding:26px 20px; }
+    .section{ padding:30px 20px 8px; }
+    .footer-grid{ padding:28px 20px; }
+    .bottom-bar{ padding:14px 20px; flex-direction:column; align-items:flex-start; }
+    .hero-title h1, .hero-title h1.gradient{ font-size:26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="hero">
+  <div class="hero-lines"></div>
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="hero-shield">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#shieldGrad)" stroke-width="1.6">
+          <defs><linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4fb3f7"/><stop offset="100%" stop-color="#b478f0"/></linearGradient></defs>
+          <path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/>
+          <rect x="9" y="10" width="6" height="5" rx="1"/>
+          <path d="M10.5 10V8.5a1.5 1.5 0 013 0V10"/>
+          <circle cx="12" cy="12.5" r="0.6" fill="#b478f0"/>
+        </svg>
+      </div>
+      <div class="hero-title">
+        <h1>Product Security Engineering</h1>
+        <h1 class="gradient">Learning Curriculum Tracker</h1>
+        <p class="hero-sub">From Beginner to Professional &nbsp;•&nbsp; Build Secure Products &nbsp;•&nbsp; Protect Users &nbsp;•&nbsp; Advance Your Career</p>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <button class="btn btn-outline" id="shareBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-3.8M8.6 13.4l6.8 3.8"/></svg>
+        Share Roadmap
+      </button>
+      <button class="btn btn-fill" id="downloadBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download
+      </button>
+    </div>
+  </div>
+
+  <div class="badge-row">
+    <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l-6-6 6-6"/><path d="M15 6l6 6-6 6"/></svg> Hands-on Focused</span>
+    <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h6v16H4z"/><path d="M14 3h6v18h-6z"/></svg> Industry Relevant</span>
+    <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg> Security Mindset</span>
+    <span class="badge-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3c3 0 6 3 6 7-3 0-6-1-8-3M10 21c0-3 1-6 3-8-2-2-3-5-3-8-4 0-7 3-7 7 0 3 1 5 3 7 2 2 4 3 4 2z"/></svg> Career Ready</span>
+  </div>
+</header>
+
+<!-- ================= BEGINNER ================= -->
+<section class="section theme-beginner">
+  <div class="section-header">
+    <div class="section-head-left">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22V12"/><path d="M12 12C12 8 9 6 5 6c0 4 2 7 7 6z"/><path d="M12 12c0-5 3-8 8-8 0 5-3 9-8 8z"/></svg>
+      </div>
+      <div>
+        <div class="section-title">Beginner — Foundation</div>
+        <p class="section-desc">Build a strong foundation in core concepts, tools and security fundamentals.</p>
+      </div>
+    </div>
+    <span class="module-badge">8 Modules</span>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg></span><span class="card-title">Computer &amp; Networking Basics</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b1-1"><label for="b1-1">How computers work</label></li>
+        <li><input type="checkbox" id="b1-2"><label for="b1-2">Operating Systems (Linux/Windows)</label></li>
+        <li><input type="checkbox" id="b1-3"><label for="b1-3">Networking fundamentals</label></li>
+        <li><input type="checkbox" id="b1-4"><label for="b1-4">TCP/IP, DNS, HTTP/HTTPS</label></li>
+        <li><input type="checkbox" id="b1-5"><label for="b1-5">Ports, protocols, Wireshark basics</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="card-title">Security Fundamentals</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b2-1"><label for="b2-1">CIA Triad</label></li>
+        <li><input type="checkbox" id="b2-2"><label for="b2-2">Threats, vulnerabilities, risks</label></li>
+        <li><input type="checkbox" id="b2-3"><label for="b2-3">Attack vectors &amp; exploit basics</label></li>
+        <li><input type="checkbox" id="b2-4"><label for="b2-4">Security controls overview</label></li>
+        <li><input type="checkbox" id="b2-5"><label for="b2-5">Defense in depth</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 4 6 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6-4-9s1.5-6.3 4-9z"/></svg></span><span class="card-title">Web Technologies &amp; Applications</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b3-1"><label for="b3-1">How web apps work</label></li>
+        <li><input type="checkbox" id="b3-2"><label for="b3-2">HTTP/HTTPS, cookies, sessions</label></li>
+        <li><input type="checkbox" id="b3-3"><label for="b3-3">HTML, CSS, JavaScript basics</label></li>
+        <li><input type="checkbox" id="b3-4"><label for="b3-4">Client–Server architecture</label></li>
+        <li><input type="checkbox" id="b3-5"><label for="b3-5">APIs (REST basics)</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="6"/><path d="M12 7V4M9 4h6M6 9l-2-2M18 9l2-2M9 13h6"/></svg></span><span class="card-title">Common Vulnerabilities (OWASP Top 10)</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b4-1"><label for="b4-1">Injection</label></li>
+        <li><input type="checkbox" id="b4-2"><label for="b4-2">Broken Authentication</label></li>
+        <li><input type="checkbox" id="b4-3"><label for="b4-3">Sensitive Data Exposure</label></li>
+        <li><input type="checkbox" id="b4-4"><label for="b4-4">Broken Access Control</label></li>
+        <li><input type="checkbox" id="b4-5"><label for="b4-5">Security Misconfiguration</label></li>
+        <li><input type="checkbox" id="b4-6"><label for="b4-6">... and remaining Top 10</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5l6 6-6 6"/><path d="M12 17h8"/></svg></span><span class="card-title">Tools for Beginners</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b5-1"><label for="b5-1">Burp Suite (basic)</label></li>
+        <li><input type="checkbox" id="b5-2"><label for="b5-2">OWASP ZAP</label></li>
+        <li><input type="checkbox" id="b5-3"><label for="b5-3">Postman</label></li>
+        <li><input type="checkbox" id="b5-4"><label for="b5-4">Browser DevTools</label></li>
+        <li><input type="checkbox" id="b5-5"><label for="b5-5">Nmap basics</label></li>
+        <li><input type="checkbox" id="b5-6"><label for="b5-6">Password managers</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 8l-4 4 4 4"/><path d="M15 8l4 4-4 4"/></svg></span><span class="card-title">Programming for Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b6-1"><label for="b6-1">One programming language</label></li>
+        <li><input type="checkbox" id="b6-2"><label for="b6-2">Secure coding basics</label></li>
+        <li><input type="checkbox" id="b6-3"><label for="b6-3">Input validation</label></li>
+        <li><input type="checkbox" id="b6-4"><label for="b6-4">Error handling</label></li>
+        <li><input type="checkbox" id="b6-5"><label for="b6-5">Logging basics</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-gray"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span><span class="card-title">Authentication &amp; Authorization Basics</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b7-1"><label for="b7-1">Authentication vs Authorization</label></li>
+        <li><input type="checkbox" id="b7-2"><label for="b7-2">Session management</label></li>
+        <li><input type="checkbox" id="b7-3"><label for="b7-3">Password storage</label></li>
+        <li><input type="checkbox" id="b7-4"><label for="b7-4">MFA basics</label></li>
+        <li><input type="checkbox" id="b7-5"><label for="b7-5">Access control models (RBAC)</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span class="card-title">Secure Development Lifecycle (SDLC) Basics</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="b8-1"><label for="b8-1">SDLC phases</label></li>
+        <li><input type="checkbox" id="b8-2"><label for="b8-2">Where security fits in</label></li>
+        <li><input type="checkbox" id="b8-3"><label for="b8-3">Threat modeling (intro)</label></li>
+        <li><input type="checkbox" id="b8-4"><label for="b8-4">Security requirements</label></li>
+        <li><input type="checkbox" id="b8-5"><label for="b8-5">Secure design principles</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f9d55" stroke-width="2"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 5H4a3 3 0 003 3M17 5h3a3 3 0 01-3 3"/></svg>
+    <span><strong>Beginner Milestone:</strong> Identify common vulnerabilities and configure basic security controls in a web application.</span>
+  </div>
+</section>
+
+<!-- ================= INTERMEDIATE ================= -->
+<section class="section theme-inter">
+  <div class="section-header">
+    <div class="section-head-left">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l3 9M16 7l-3 9"/></svg>
+      </div>
+      <div>
+        <div class="section-title">Intermediate — Practice &amp; Apply</div>
+        <p class="section-desc">Apply security concepts, find vulnerabilities, and integrate security into the development process.</p>
+      </div>
+    </div>
+    <span class="module-badge">8 Modules</span>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-amber"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><span class="card-title">Advanced Web App Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i1-1"><label for="i1-1">Advanced OWASP Top 10</label></li>
+        <li><input type="checkbox" id="i1-2"><label for="i1-2">Business logic flaws</label></li>
+        <li><input type="checkbox" id="i1-3"><label for="i1-3">IDOR, SSRF, CSRF, XSS</label></li>
+        <li><input type="checkbox" id="i1-4"><label for="i1-4">API security (REST/GraphQL)</label></li>
+        <li><input type="checkbox" id="i1-5"><label for="i1-5">File upload attacks</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-pink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></span><span class="card-title">Mobile Application Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i2-1"><label for="i2-1">Mobile architecture</label></li>
+        <li><input type="checkbox" id="i2-2"><label for="i2-2">Android &amp; iOS security basics</label></li>
+        <li><input type="checkbox" id="i2-3"><label for="i2-3">Mobile data storage</label></li>
+        <li><input type="checkbox" id="i2-4"><label for="i2-4">Insecure communication</label></li>
+        <li><input type="checkbox" id="i2-5"><label for="i2-5">Reverse engineering (basics)</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 15a4 4 0 010-8 5 5 0 019.6-1.5A4.5 4.5 0 0117 15H7z"/></svg></span><span class="card-title">API &amp; Microservices Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i3-1"><label for="i3-1">API security best practices</label></li>
+        <li><input type="checkbox" id="i3-2"><label for="i3-2">OAuth 2.0 / OpenID Connect</label></li>
+        <li><input type="checkbox" id="i3-3"><label for="i3-3">JWT security</label></li>
+        <li><input type="checkbox" id="i3-4"><label for="i3-4">Microservices threats</label></li>
+        <li><input type="checkbox" id="i3-5"><label for="i3-5">Service mesh security (intro)</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-navy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><span class="card-title">Secure Coding Practices</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i4-1"><label for="i4-1">Input validation &amp; output encoding</label></li>
+        <li><input type="checkbox" id="i4-2"><label for="i4-2">Avoiding injection flaws</label></li>
+        <li><input type="checkbox" id="i4-3"><label for="i4-3">Secure libraries &amp; dependencies</label></li>
+        <li><input type="checkbox" id="i4-4"><label for="i4-4">Secrets management</label></li>
+        <li><input type="checkbox" id="i4-5"><label for="i4-5">Code review for security</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><span class="card-title">Data Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i5-1"><label for="i5-1">Data classification</label></li>
+        <li><input type="checkbox" id="i5-2"><label for="i5-2">Encryption in transit &amp; at rest</label></li>
+        <li><input type="checkbox" id="i5-3"><label for="i5-3">Key management basics</label></li>
+        <li><input type="checkbox" id="i5-4"><label for="i5-4">Data masking &amp; minimization</label></li>
+        <li><input type="checkbox" id="i5-5"><label for="i5-5">Privacy by design</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-red"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M4 9h4"/></svg></span><span class="card-title">Threat Modeling &amp; Risk Assessment</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i6-1"><label for="i6-1">STRIDE methodology</label></li>
+        <li><input type="checkbox" id="i6-2"><label for="i6-2">Attack surface analysis</label></li>
+        <li><input type="checkbox" id="i6-3"><label for="i6-3">Threat modeling workflow</label></li>
+        <li><input type="checkbox" id="i6-4"><label for="i6-4">Risk assessment</label></li>
+        <li><input type="checkbox" id="i6-5"><label for="i6-5">Mitigation strategies</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="card-title">Testing &amp; Assessment Skills</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i7-1"><label for="i7-1">Vulnerability scanning</label></li>
+        <li><input type="checkbox" id="i7-2"><label for="i7-2">SAST, DAST, IAST basics</label></li>
+        <li><input type="checkbox" id="i7-3"><label for="i7-3">Penetration testing basics</label></li>
+        <li><input type="checkbox" id="i7-4"><label for="i7-4">Manual testing methodology</label></li>
+        <li><input type="checkbox" id="i7-5"><label for="i7-5">Reporting &amp; remediation</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12a4 3 0 118 0 4 3 0 11-8 0z"/></svg></span><span class="card-title">DevSecOps Fundamentals</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="i8-1"><label for="i8-1">CI/CD security pipeline</label></li>
+        <li><input type="checkbox" id="i8-2"><label for="i8-2">Security gates</label></li>
+        <li><input type="checkbox" id="i8-3"><label for="i8-3">Dependency scanning</label></li>
+        <li><input type="checkbox" id="i8-4"><label for="i8-4">Infrastructure as Code (IaC) security</label></li>
+        <li><input type="checkbox" id="i8-5"><label for="i8-5">Container security basics</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8960c" stroke-width="2"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 5H4a3 3 0 003 3M17 5h3a3 3 0 01-3 3"/></svg>
+    <span><strong>Intermediate Milestone:</strong> Perform end-to-end security assessment of a web or mobile application and fix identified issues.</span>
+  </div>
+</section>
+
+<!-- ================= PROFESSIONAL ================= -->
+<section class="section theme-pro">
+  <div class="section-header">
+    <div class="section-head-left">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 8l4 3 5-6 5 6 4-3-2 11H5L3 8z"/></svg>
+      </div>
+      <div>
+        <div class="section-title">Professional — Lead &amp; Build Secure Products</div>
+        <p class="section-desc">Design security, build security programs and lead product security initiatives at scale.</p>
+      </div>
+    </div>
+    <span class="module-badge">8 Modules</span>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-red"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg></span><span class="card-title">Secure Architecture &amp; Design</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p1-1"><label for="p1-1">Security design principles</label></li>
+        <li><input type="checkbox" id="p1-2"><label for="p1-2">Zero Trust architecture</label></li>
+        <li><input type="checkbox" id="p1-3"><label for="p1-3">Attack surface reduction</label></li>
+        <li><input type="checkbox" id="p1-4"><label for="p1-4">Secure defaults</label></li>
+        <li><input type="checkbox" id="p1-5"><label for="p1-5">Security patterns</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17a4 4 0 010-8 5 5 0 019.6-1.5A4.5 4.5 0 0117 17H7z"/></svg></span><span class="card-title">Cloud &amp; Infrastructure Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p2-1"><label for="p2-1">AWS / Azure / GCP security</label></li>
+        <li><input type="checkbox" id="p2-2"><label for="p2-2">IAM best practices</label></li>
+        <li><input type="checkbox" id="p2-3"><label for="p2-3">Network security (VPC, SG)</label></li>
+        <li><input type="checkbox" id="p2-4"><label for="p2-4">Kubernetes security</label></li>
+        <li><input type="checkbox" id="p2-5"><label for="p2-5">Serverless security</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-pink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.3"/><path d="M15.5 14a4.8 4.8 0 016.5 4.5"/></svg></span><span class="card-title">Product Security Program</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p3-1"><label for="p3-1">Security strategy &amp; roadmap</label></li>
+        <li><input type="checkbox" id="p3-2"><label for="p3-2">Policies &amp; standards</label></li>
+        <li><input type="checkbox" id="p3-3"><label for="p3-3">Security champions program</label></li>
+        <li><input type="checkbox" id="p3-4"><label for="p3-4">Metrics &amp; KPIs</label></li>
+        <li><input type="checkbox" id="p3-5"><label for="p3-5">Stakeholder communication</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-amber"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20"/><path d="M8 10h4M10 8v4"/></svg></span><span class="card-title">Advanced Testing &amp; Red Teaming</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p4-1"><label for="p4-1">Advanced penetration testing</label></li>
+        <li><input type="checkbox" id="p4-2"><label for="p4-2">Exploit development basics</label></li>
+        <li><input type="checkbox" id="p4-3"><label for="p4-3">Red teaming methodologies</label></li>
+        <li><input type="checkbox" id="p4-4"><label for="p4-4">Bug bounty programs</label></li>
+        <li><input type="checkbox" id="p4-5"><label for="p4-5">Purple teaming</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="1.5"/><path d="M4 8l8-5 8 5"/><path d="M12 3v5"/></svg></span><span class="card-title">Supply Chain Security</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p5-1"><label for="p5-1">SBOM (Software Bill of Materials)</label></li>
+        <li><input type="checkbox" id="p5-2"><label for="p5-2">Dependency management</label></li>
+        <li><input type="checkbox" id="p5-3"><label for="p5-3">Third-party risk management</label></li>
+        <li><input type="checkbox" id="p5-4"><label for="p5-4">Code signing</label></li>
+        <li><input type="checkbox" id="p5-5"><label for="p5-5">Supply chain threats</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-red"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a6 6 0 016 6c0 4-2 5-2 8H8c0-3-2-4-2-8a6 6 0 016-6z"/><path d="M10 20h4"/></svg></span><span class="card-title">Incident Response &amp; Threat Intelligence</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p6-1"><label for="p6-1">Incident response lifecycle</label></li>
+        <li><input type="checkbox" id="p6-2"><label for="p6-2">Logging &amp; monitoring</label></li>
+        <li><input type="checkbox" id="p6-3"><label for="p6-3">SIEM basics</label></li>
+        <li><input type="checkbox" id="p6-4"><label for="p6-4">Threat intelligence basics</label></li>
+        <li><input type="checkbox" id="p6-5"><label for="p6-5">Post-incident activities</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-navy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 8h6M9 12h6M9 16h3"/><circle cx="17" cy="17" r="0.4" fill="currentColor"/></svg></span><span class="card-title">Governance, Risk &amp; Compliance</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p7-1"><label for="p7-1">Risk management frameworks</label></li>
+        <li><input type="checkbox" id="p7-2"><label for="p7-2">ISO 27001, SOC 2, NIST (intro)</label></li>
+        <li><input type="checkbox" id="p7-3"><label for="p7-3">Privacy laws (GDPR, CCPA)</label></li>
+        <li><input type="checkbox" id="p7-4"><label for="p7-4">Audit &amp; compliance</label></li>
+        <li><input type="checkbox" id="p7-5"><label for="p7-5">Vendor risk management</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon ic-pink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18"/><path d="M5 4h11l-2.5 3.5L16 11H5"/></svg></span><span class="card-title">Leadership &amp; Career Development</span></div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="p8-1"><label for="p8-1">Security leadership skills</label></li>
+        <li><input type="checkbox" id="p8-2"><label for="p8-2">Building high-performing teams</label></li>
+        <li><input type="checkbox" id="p8-3"><label for="p8-3">Security culture</label></li>
+        <li><input type="checkbox" id="p8-4"><label for="p8-4">Career paths in Product Security</label></li>
+        <li><input type="checkbox" id="p8-5"><label for="p8-5">Continuous learning mindset</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e02749" stroke-width="2"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 5H4a3 3 0 003 3M17 5h3a3 3 0 01-3 3"/></svg>
+    <span><strong>Professional Milestone:</strong> Design and lead a product security program that scales and drives measurable security outcomes.</span>
+  </div>
+</section>
+
+<!-- ================= FOOTER GRID ================= -->
+<div class="footer-grid">
+  <div class="footer-col">
+    <h4>LEARNING PROGRESSION</h4>
+    <div class="progression">
+      <div class="prog-step">
+        <div class="prog-circle" style="background:var(--beginner)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22V12"/><path d="M12 12C12 8 9 6 5 6c0 4 2 7 7 6z"/><path d="M12 12c0-5 3-8 8-8 0 5-3 9-8 8z"/></svg>
+        </div>
+        <div class="prog-label">Foundations</div>
+        <div class="prog-sub">Learn the basics</div>
+      </div>
+      <span class="prog-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <div class="prog-step">
+        <div class="prog-circle" style="background:var(--inter)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l3 9M16 7l-3 9"/></svg>
+        </div>
+        <div class="prog-label">Practice &amp; Apply</div>
+        <div class="prog-sub">Gain hands-on skills</div>
+      </div>
+      <span class="prog-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <div class="prog-step">
+        <div class="prog-circle" style="background:var(--pro)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 8l4 3 5-6 5 6 4-3-2 11H5L3 8z"/></svg>
+        </div>
+        <div class="prog-label">Lead &amp; Scale</div>
+        <div class="prog-sub">Drive impact at scale</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-col">
+    <h4>ESSENTIAL MINDSET</h4>
+    <ul class="footer-list">
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Security is everyone's responsibility</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Be curious. Ask "what if?"</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Think like an attacker. Build like a defender.</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Automate security. Shift left.</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Never stop learning.</li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h4>RECOMMENDED RESOURCES</h4>
+    <ul class="footer-list">
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg> OWASP Top 10 — owasp.org</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg> PortSwigger Web Security Academy</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg> NIST Cybersecurity Framework</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg> SANS / GIAC Trainings</li>
+      <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg> The Secure Developer — Microsoft</li>
+    </ul>
+  </div>
+
+  <div class="footer-col track-progress">
+    <h4>TRACK YOUR PROGRESS</h4>
+    <p>Use this tracker to check your learning journey and become a confident Product Security Engineer.</p>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-labels"><span id="progressPct">0%</span><span>100%</span></div>
+  </div>
+</div>
+
+<!-- ================= BOTTOM BAR ================= -->
+<div class="bottom-bar">
+  <span>Build Secure Products. Protect Users. Make an Impact.</span>
+  <div class="socials">
+    <span>Share this roadmap with your network</span>
+    <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7H9z"/></svg></a>
+    <a href="#" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7.4 9.6L3.3 21H6l5.6-6.3L16 21h5l-7.7-9.9L20.4 3h-2.7l-5.1 5.8L8 3H3z"/></svg></a>
+    <a href="#" aria-label="Copy link" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1.3 1.2"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1.3-1.2"/></svg></a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = "productsec_roadmap_progress";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.checklist input[type="checkbox"]'));
+  var fill = document.getElementById('progressFill');
+  var pct = document.getElementById('progressPct');
+
+  function loadState(){
+    try{
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function saveState(state){
+    try{ window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function updateProgress(){
+    var checked = boxes.filter(function(b){ return b.checked; }).length;
+    var percent = boxes.length ? Math.round((checked / boxes.length) * 100) : 0;
+    fill.style.width = percent + '%';
+    pct.textContent = percent + '%';
+  }
+
+  var state = loadState();
+  boxes.forEach(function(box){
+    if(state[box.id]) box.checked = true;
+    box.addEventListener('change', function(){
+      var s = loadState();
+      s[box.id] = box.checked;
+      saveState(s);
+      updateProgress();
+    });
+  });
+  updateProgress();
+
+  document.getElementById('shareBtn').addEventListener('click', function(){
+    if(navigator.share){
+      navigator.share({ title: document.title, url: window.location.href }).catch(function(){});
+    } else if(navigator.clipboard){
+      navigator.clipboard.writeText(window.location.href);
+      this.textContent = 'Link copied!';
+      var btn = this;
+      setTimeout(function(){ btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-3.8M8.6 13.4l6.8 3.8"/></svg> Share Roadmap'; }, 1800);
+    }
+  });
+  document.getElementById('downloadBtn').addEventListener('click', function(){
+    window.print();
+  });
+})();
+</script>
+</body>
+</html>

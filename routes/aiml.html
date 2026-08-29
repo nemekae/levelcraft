@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior AI/ML Engineer: 9-Month Curriculum</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap');
+  :root{--bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--accent:#00e5a0;--accent2:#7c6fff;--accent3:#ff6b6b;--amber:#ffb347;--text:#e8e8f0;--muted:#6b6b8a;--card:#14141f;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-height:100vh;padding:40px 24px;}
+  .page{max-width:1100px;margin:0 auto;}
+  header{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:40px;}
+  .eyebrow{font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;}
+  h1{font-family:'Fraunces',serif;font-size:clamp(28px,5vw,52px);font-weight:900;line-height:1.05;color:#fff;margin-bottom:16px;}
+  h1 span{color:var(--accent);}
+  .subtitle{font-size:13px;color:var(--muted);line-height:1.8;max-width:680px;}
+  .target-orgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .org-pill{font-size:10px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);letter-spacing:.05em;}
+  .org-pill.fintech{border-color:#00e5a040;color:var(--accent);}
+  .org-pill.bigtech{border-color:#7c6fff40;color:var(--accent2);}
+  .phase{margin-bottom:36px;}
+  .phase-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;margin-bottom:16px;}
+  .phase-num{font-family:'Fraunces',serif;font-size:48px;font-weight:900;line-height:1;color:var(--border);min-width:52px;}
+  .phase-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:3px;}
+  .phase-weeks{font-size:11px;color:var(--muted);letter-spacing:.06em;}
+  .phase-badge{font-size:10px;padding:5px 12px;border-radius:20px;font-weight:500;letter-spacing:.05em;white-space:nowrap;}
+  .badge-green{background:#00e5a015;color:var(--accent);border:1px solid #00e5a030;}
+  .badge-purple{background:#7c6fff15;color:var(--accent2);border:1px solid #7c6fff30;}
+  .badge-amber{background:#ffb34715;color:var(--amber);border:1px solid #ffb34730;}
+  .badge-red{background:#ff6b6b15;color:var(--accent3);border:1px solid #ff6b6b30;}
+  .badge-blue{background:#60a5fa15;color:#60a5fa;border:1px solid #60a5fa30;}
+  .curriculum-table{width:100%;border-collapse:collapse;font-size:12px;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .curriculum-table thead tr{background:var(--surface);}
+  .curriculum-table th{text-align:left;padding:10px 14px;font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:500;}
+  .curriculum-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+  .curriculum-table tbody tr:last-child{border-bottom:none;}
+  .curriculum-table tbody tr:hover{background:var(--card);}
+  .curriculum-table td{padding:11px 14px;vertical-align:top;line-height:1.55;}
+  .td-week{color:var(--muted);white-space:nowrap;font-size:11px;min-width:60px;}
+  .td-topic{color:#fff;font-weight:500;min-width:160px;}
+  .td-do{color:var(--text);min-width:240px;}
+  .td-tool{color:var(--muted);font-size:11px;min-width:120px;}
+  .td-deliverable{min-width:160px;}
+  .td-ai{min-width:140px;}
+  .deliverable-tag{font-size:10px;color:var(--accent);background:#00e5a010;border:1px solid #00e5a020;padding:3px 8px;border-radius:6px;display:inline-block;}
+  .ai-note{font-size:11px;color:#a09af0;font-style:italic;}
+  .milestone{margin:12px 0 28px;padding:14px 18px;background:linear-gradient(90deg,#00e5a008,transparent);border-left:2px solid var(--accent);border-radius:0 6px 6px 0;font-size:12px;color:var(--muted);}
+  .milestone strong{color:var(--accent);}
+  footer{margin-top:48px;padding-top:28px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:12px;}
+  .footer-block h3{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:10px;}
+  .footer-block ul{list-style:none;color:var(--muted);line-height:2;}
+  .footer-block ul li::before{content:'→ ';color:var(--accent);}
+  @media(max-width:768px){body{padding:20px 12px;}.td-tool,.td-ai{display:none;}footer{grid-template-columns:1fr;}}
+  .back-home { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; margin-bottom: 20px; letter-spacing: 0.05em; }
+  .back-home:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+<a class="back-home" href="../index.html">&larr; Levelcraft home</a>
+<header>
+  <p class="eyebrow">9-Month Roadmap</p>
+  <h1>Junior AI/ML<br><span>Engineer</span> Curriculum</h1>
+  <p class="subtitle">Built from real hiring data at the top 50 fintechs and top 50 tech companies globally. Every skill maps to what AI/ML teams actually screen for — from Stripe Radar to Anthropic, OpenAI, and Google DeepMind. <br><br><em>The market rewards engineers who ship production systems. Every phase builds toward that.</em></p>
+  <div class="target-orgs">
+    <span class="org-pill fintech">Stripe</span><span class="org-pill fintech">Revolut</span><span class="org-pill fintech">Nubank</span><span class="org-pill fintech">Plaid</span><span class="org-pill fintech">Monzo</span><span class="org-pill fintech">Robinhood</span><span class="org-pill fintech">Klarna</span><span class="org-pill fintech">Adyen</span><span class="org-pill fintech">Brex</span><span class="org-pill fintech">Wise</span><span class="org-pill fintech">Feedzai</span><span class="org-pill fintech">Upstart</span><span class="org-pill fintech">Zest AI</span><span class="org-pill fintech">Block/Square</span><span class="org-pill fintech">Chime</span>
+    <span class="org-pill bigtech">Google DeepMind</span><span class="org-pill bigtech">Meta FAIR</span><span class="org-pill bigtech">Anthropic</span><span class="org-pill bigtech">OpenAI</span><span class="org-pill bigtech">Microsoft</span><span class="org-pill bigtech">Amazon</span><span class="org-pill bigtech">Databricks</span><span class="org-pill bigtech">Hugging Face</span><span class="org-pill bigtech">Cohere</span><span class="org-pill bigtech">Mistral</span><span class="org-pill bigtech">Waymo</span><span class="org-pill bigtech">Scale AI</span><span class="org-pill bigtech">Weights &amp; Biases</span>
+  </div>
+</header>
+
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">1</div>
+    <div><div class="phase-title">Python &amp; Math Foundations</div><div class="phase-weeks">Weeks 1–4 · Month 1</div></div>
+    <span class="phase-badge badge-green">START HERE</span>
+  </div>
+  <table class="curriculum-table">
+    <thead><tr><th>Week</th><th>Topic</th><th>What You Do</th><th>Resources</th><th>Deliverable</th><th>Production Angle</th></tr></thead>
+    <tbody>
+      <tr><td class="td-week">Wk 1</td><td class="td-topic">Python for ML</td><td class="td-do">OOP, NumPy, Pandas, Matplotlib. Analyse a real fintech dataset (Kaggle credit card fraud)</td><td class="td-tool">Python.org, Kaggle</td><td class="td-deliverable"><span class="deliverable-tag">EDA notebook on GitHub</span></td><td class="td-ai"><span class="ai-note">Use GitHub Copilot to autocomplete Pandas ops — read every line it writes</span></td></tr>
+      <tr><td class="td-week">Wk 2</td><td class="td-topic">Linear Algebra + Stats</td><td class="td-do">Vectors, matrices, dot products, probability, distributions. Focus on ML relevance only</td><td class="td-tool">3Blue1Brown, StatQuest</td><td class="td-deliverable"><span class="deliverable-tag">Annotated code + notes</span></td><td class="td-ai"><span class="ai-note">Ask Claude to explain any concept — test yourself without AI immediately after</span></td></tr>
+      <tr><td class="td-week">Wk 3</td><td class="td-topic">Calculus for ML</td><td class="td-do">Derivatives, gradients, chain rule. Implement gradient descent from scratch in pure Python</td><td class="td-tool">fast.ai Part 1, Khan Academy</td><td class="td-deliverable"><span class="deliverable-tag">Gradient descent script on GitHub</span></td><td class="td-ai"><span class="ai-note">Ask AI to visualise loss curves — study the shapes and understand why they occur</span></td></tr>
+      <tr><td class="td-week">Wk 4</td><td class="td-topic">Data Wrangling</td><td class="td-do">Clean, merge, encode, scale real datasets. Process Stripe/Nubank-style transaction data end-to-end</td><td class="td-tool">Pandas docs, Scikit-learn preprocessing</td><td class="td-deliverable"><span class="deliverable-tag">Clean dataset pipeline script</span></td><td class="td-ai"><span class="ai-note">Use AI to generate synthetic financial data for testing your pipeline</span></td></tr>
+    </tbody>
+  </table>
+  <div class="milestone">✓ <strong>Month 1 checkpoint:</strong> You can manipulate real data in Python, understand the maths behind ML, and have your first public GitHub notebook.</div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">2</div>
+    <div><div class="phase-title">Classical Machine Learning</div><div class="phase-weeks">Weeks 5–9 · Months 2–3</div></div>
+    <span class="phase-badge badge-purple">CORE ML</span>
+  </div>
+  <table class="curriculum-table">
+    <thead><tr><th>Week</th><th>Topic</th><th>What You Do</th><th>Resources</th><th>Deliverable</th><th>Production Angle</th></tr></thead>
+    <tbody>
+      <tr><td class="td-week">Wk 5</td><td class="td-topic">Supervised Learning</td><td class="td-do">Linear/logistic regression, decision trees, SVMs. Train a credit scoring model (like Upstart, Zest AI)</td><td class="td-tool">Scikit-learn, Hands-On ML book</td><td class="td-deliverable"><span class="deliverable-tag">Credit scoring model + report</span></td><td class="td-ai"><span class="ai-note">Use AI to explain precision vs recall trade-offs in a fintech regulatory context</span></td></tr>
+      <tr><td class="td-week">Wk 6</td><td class="td-topic">Ensemble Methods</td><td class="td-do">Random forests, XGBoost, LightGBM. These power most fintech fraud and risk models in production today</td><td class="td-tool">XGBoost docs, Kaggle competitions</td><td class="td-deliverable"><span class="deliverable-tag">Fraud model beating baseline</span></td><td class="td-ai"><span class="ai-note">Run a Kaggle competition — study top notebooks with AI to understand each decision</span></td></tr>
+      <tr><td class="td-week">Wk 7</td><td class="td-topic">Unsupervised Learning</td><td class="td-do">K-means, DBSCAN, PCA. Cluster customer spending behaviour in Monzo/Revolut transaction style</td><td class="td-tool">Scikit-learn, Seaborn</td><td class="td-deliverable"><span class="deliverable-tag">Customer segmentation notebook</span></td><td class="td-ai"><span class="ai-note">Ask AI to explain when clustering fails — understand its limits before shipping</span></td></tr>
+      <tr><td class="td-week">Wk 8</td><td class="td-topic">Model Evaluation</td><td class="td-do">Cross-validation, ROC-AUC, SHAP values, confusion matrices. Make your model explainable</td><td class="td-tool">SHAP library, Scikit-learn metrics</td><td class="td-deliverable"><span class="deliverable-tag">Evaluation report with SHAP plots</span></td><td class="td-ai"><span class="ai-note">SHAP + AI = plain-English model explanations. Critical RegTech/compliance skill</span></td></tr>
+      <tr><td class="td-week">Wk 9</td><td class="td-topic">End-to-End ML Pipeline</td><td class="td-do">Train → evaluate → save → load → serve. Build a reusable, reproducible ML pipeline class</td><td class="td-tool">Scikit-learn Pipeline, joblib</td><td class="td-deliverable"><span class="deliverable-tag">ML pipeline — Portfolio piece 1</span></td><td class="td-ai"><span class="ai-note">Ask AI to code-review your pipeline for production readiness gaps</span></td></tr>
+    </tbody>
+  </table>
+  <div class="milestone">✓ <strong>Month 3 checkpoint:</strong> You can train, evaluate, and explain classical ML models. You've beaten Kaggle baselines — the skill level of Plaid, Feedzai, and Stripe Radar teams.</div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">3</div>
+    <div><div class="phase-title">Deep Learning &amp; Neural Networks</div><div class="phase-weeks">Weeks 10–14 · Months 3–4</div></div>
+    <span class="phase-badge badge-amber">HIGH DEMAND</span>
+  </div>
+  <table class="curriculum-table">
+    <thead><tr><th>Week</th><th>Topic</th><th>What You Do</th><th>Resources</th><th>Deliverable</th><th>Production Angle</th></tr></thead>
+    <tbody>
+      <tr><td class="td-week">Wk 10</td><td class="td-topic">Neural Net Basics</td><td class="td-do">Perceptrons, backprop, activation functions. Build a neural net from scratch in NumPy — no PyTorch</td><td class="td-tool">fast.ai, 3Blue1Brown NN series</td><td class="td-deliverable"><span class="deliverable-tag">NumPy neural net on GitHub</span></td><td class="td-ai"><span class="ai-note">Ask AI to walk through backprop step by step until you can do it eyes closed</span></td></tr>
+      <tr><td class="td-week">Wk 11</td><td class="td-topic">PyTorch Fundamentals</td><td class="td-do">Tensors, autograd, training loops, GPU. Retrain your credit model in PyTorch with full training loop</td><td class="td-tool">PyTorch docs, PyTorch Lightning</td><td class="td-deliverable"><span class="deliverable-tag">PyTorch credit model</span></td><td class="td-ai"><span class="ai-note">Use Cursor IDE with AI to write PyTorch boilerplate faster — standard at ML teams</span></td></tr>
+      <tr><td class="td-week">Wk 12</td><td class="td-topic">CNNs + RNNs</td><td class="td-do">Conv layers for pattern detection. LSTMs for time-series transaction sequences. Build fraud detector</td><td class="td-tool">fast.ai Part 1, D2L.ai</td><td class="td-deliverable"><span class="deliverable-tag">Time-series fraud detector (LSTM)</span></td><td class="td-ai"><span class="ai-note">Ask AI to explain vanishing gradients — implement the fix (gradient clipping) yourself</span></td></tr>
+      <tr><td class="td-week">Wk 13</td><td class="td-topic">Transformers + Attention</td><td class="td-do">Self-attention, encoder-decoder, positional encoding. Understand how LLMs work under the hood</td><td class="td-tool">Attention Is All You Need, Andrej Karpathy</td><td class="td-deliverable"><span class="deliverable-tag">Annotated transformer notebook</span></td><td class="td-ai"><span class="ai-note">Implement mini-GPT from Karpathy's lecture — essential for any frontier AI role</span></td></tr>
+      <tr><td class="td-week">Wk 14</td><td class="td-topic">Fine-tuning + Transfer</td><td class="td-do">Fine-tune a HuggingFace model on financial sentiment data (earnings calls, analyst reports)</td><td class="td-tool">HuggingFace Transformers, PEFT/LoRA</td><td class="td-deliverable"><span class="deliverable-tag">Fine-tuned model — Portfolio piece 2</span></td><td class="td-ai"><span class="ai-note">Compare zero-shot vs fine-tuned performance — document findings for your portfolio</span></td></tr>
+    </tbody>
+  </table>
+  <div class="milestone">✓ <strong>Month 4 checkpoint:</strong> You understand neural networks from scratch through to transformers. You've fine-tuned an LLM — a skill used at Anthropic, OpenAI, and every AI-first fintech.</div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">4</div>
+    <div><div class="phase-title">LLMs, RAG &amp; Generative AI Engineering</div><div class="phase-weeks">Weeks 15–19 · Months 4–5</div></div>
+    <span class="phase-badge badge-red">AI LEVER</span>
+  </div>
+  <table class="curriculum-table">
+    <thead><tr><th>Week</th><th>Topic</th><th>What You Do</th><th>Resources</th><th>Deliverable</th><th>Production Angle</th></tr></thead>
+    <tbody>
+      <tr><td class="td-week">Wk 15</td><td class="td-topic">LLM APIs + Prompting</td><td class="td-do">OpenAI + Anthropic APIs. System prompts, few-shot, chain-of-thought. Build a financial Q&amp;A chatbot</td><td class="td-tool">OpenAI API, Anthropic SDK</td><td class="td-deliverable"><span class="deliverable-tag">Financial Q&A chatbot</span></td><td class="td-ai"><span class="ai-note">Learn prompt patterns used at Klarna, Cleo, and Revolut AI teams in production</span></td></tr>
+      <tr><td class="td-week">Wk 16</td><td class="td-topic">RAG Systems</td><td class="td-do">Embeddings, vector stores, retrieval pipeline. Build RAG app over SEC filings or bank policy docs</td><td class="td-tool">LangChain, LlamaIndex, pgvector</td><td class="td-deliverable"><span class="deliverable-tag">RAG document assistant</span></td><td class="td-ai"><span class="ai-note">The #1 pattern in enterprise AI — Nubank, Plaid, and Wise all run RAG in prod</span></td></tr>
+      <tr><td class="td-week">Wk 17</td><td class="td-topic">LLM Agents + Tool Use</td><td class="td-do">Function calling, tool orchestration, LangGraph. Build an autonomous fraud investigation agent</td><td class="td-tool">LangGraph, CrewAI, LangChain</td><td class="td-deliverable"><span class="deliverable-tag">Autonomous fraud agent</span></td><td class="td-ai"><span class="ai-note">Stanford's Junior AI Engineer JD requires: "shipped at least one production LLM agent"</span></td></tr>
+      <tr><td class="td-week">Wk 18</td><td class="td-topic">Evals + Guardrails</td><td class="td-do">LLM evaluation (RAGAS, DeepEval), hallucination detection, output validation with Pydantic</td><td class="td-tool">RAGAS, DeepEval, Pydantic</td><td class="td-deliverable"><span class="deliverable-tag">Eval harness for your RAG app</span></td><td class="td-ai"><span class="ai-note">Production AI without evals fails. This one skill separates you from tutorial builders</span></td></tr>
+      <tr><td class="td-week">Wk 19</td><td class="td-topic">AI Capstone Product</td><td class="td-do">Combine RAG + agent + evals into one AI fintech app: spending coach, fraud explainer, or risk advisor</td><td class="td-tool">FastAPI + React + LLM + Cloud</td><td class="td-deliverable"><span class="deliverable-tag">AI fintech product — Portfolio piece 3</span></td><td class="td-ai"><span class="ai-note">Demo on LinkedIn. Share on HuggingFace Spaces. Get it seen by your target companies</span></td></tr>
+    </tbody>
+  </table>
+  <div class="milestone">✓ <strong>Month 5 checkpoint:</strong> You've built production-grade RAG and agents with evals. This is the skill tier that gets calls from Anthropic, Stripe AI, and Nubank ML teams.</div>
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">5</div>
+    <div><div class="phase-title">MLOps &amp; Production AI</div><div class="phase-weeks">Weeks 20–24 · Months 5–6</div></div>
+    <span class="phase-badge badge-blue">SEPARATES YOU</span>
+  </div>
+  <table class="curriculum-table">
+    <thead><tr><th>Week</th><th>Topic</th><th>What You Do</th><th>Resources</th><th>Deliverable</th><th>Production Angle</th></tr></thead>
+    <tbody>
+      <tr><td class="td-week">Wk 20</td><td class="td-topic">Experiment Tracking</td><td class="td-do">MLflow + W&amp;B. Log runs, compare models, register best version. Reproduce any experiment in one command</td><td class="td-tool">MLflow, Weights &amp; Biases</td><td class="td-deliverable"><span class="deliverable-tag">Tracked experiment dashboard</span></td><td class="td-ai"><span class="ai-note">Use AI to generate experiment configs — understand every hyperparameter</span></td></tr>
+      <tr><td class="td-week">Wk 21</td><td class="td-topic">Model Serving + APIs</td><td class="td-do">FastAPI model endpoint, Docker container, request batching. Serve fraud model as a real-time API</td><td class="td-tool">FastAPI, Docker, Uvicorn</td><td class="td-deliverable"><span class="deliverable-tag">Dockerised model API</span></td><td class="td-ai"><span class="ai-note">AI generates Dockerfile — you optimise image size and inference latency</span></td></tr>
+      <tr><td class="td-week">Wk 22</td><td class="td-topic">Cloud ML Platforms</td><td class="td-do">AWS SageMaker or Google Vertex AI. Train, deploy, and monitor a model end-to-end in the cloud</td><td class="td-tool">AWS SageMaker, Vertex AI, Bedrock</td><td class="td-deliverable"><span class="deliverable-tag">Cloud-deployed model + endpoint</span></td><td class="td-ai"><span class="ai-note">Add AWS Bedrock to call a foundation model from within your pipeline</span></td></tr>
+      <tr><td class="td-week">Wk 23</td><td class="td-topic">CI/CD for ML</td><td class="td-do">GitHub Actions: auto-retrain on data drift, auto-deploy when metric improves. DVC for data versioning</td><td class="td-tool">GitHub Actions, DVC, pytest</td><td class="td-deliverable"><span class="deliverable-tag">Automated ML pipeline on GitHub</span></td><td class="td-ai"><span class="ai-note">Add AI code-review step — mirrors what Waymo and DeepMind ship daily</span></td></tr>
+      <tr><td class="td-week">Wk 24</td><td class="td-topic">Monitoring + Drift</td><td class="td-do">Evidently AI for data drift detection. Alert when model degrades. Log predictions in production</td><td class="td-tool">Evidently AI, Prometheus, Grafana</td><td class="td-deliverable"><span class="deliverable-tag">Live monitoring dashboard</span></td><td class="td-ai"><span class="ai-note">Fintechs retrain fraud models weekly — drift detection is a core production skill</span></td></tr>
+    </tbody>
+  </table>
+  <div class="milestone">✓ <strong>Month 6 checkpoint:</strong> Your models run in production on cloud infrastructure with CI/CD, monitoring, and drift detection. Senior-intern level at any ML team.</div>
+</div>
+
+<!-- PHASE 6 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num">6</div>
+    <div><div class="phase-title">Interview Prep + Job Launch</div><div class="phase-weeks">Weeks 25–36 · Months 7–9</div></div>
+    <span class="phase-badge badge-green">FINISH LINE</span>
+  </div>
+  <table class="curriculum-table">
+    <thead><tr><th>Week</th><th>Topic</th><th>What You Do</th><th>Resources</th><th>Deliverable</th><th>Production Angle</th></tr></thead>
+    <tbody>
+      <tr><td class="td-week">Wk 25–27</td><td class="td-topic">ML Theory Interviews</td><td class="td-do">Bias-variance, regularisation, optimisers, loss functions, transformer architecture. Daily flashcards</td><td class="td-tool">Anki, ML Interview Book (Chip Huyen)</td><td class="td-deliverable"><span class="deliverable-tag">200+ flashcards mastered</span></td><td class="td-ai"><span class="ai-note">Quiz yourself with Claude daily — it knows exactly what ML interviewers ask</span></td></tr>
+      <tr><td class="td-week">Wk 28–29</td><td class="td-topic">ML Coding Interviews</td><td class="td-do">Implement from scratch: k-means, logistic regression, attention mechanism. No libraries allowed</td><td class="td-tool">LeetCode ML, NeetCode</td><td class="td-deliverable"><span class="deliverable-tag">10+ from-scratch implementations</span></td><td class="td-ai"><span class="ai-note">Use AI to check your implementation — never to write it. Understanding beats memorising</span></td></tr>
+      <tr><td class="td-week">Wk 30–31</td><td class="td-topic">ML System Design</td><td class="td-do">Design: fraud detection system, recommendation engine, real-time risk scorer. Talk trade-offs aloud</td><td class="td-tool">Designing ML Systems (Chip Huyen), Excalidraw</td><td class="td-deliverable"><span class="deliverable-tag">3 ML system design docs</span></td><td class="td-ai"><span class="ai-note">Run mock ML design interviews with Claude acting as a senior ML engineer</span></td></tr>
+      <tr><td class="td-week">Wk 32–33</td><td class="td-topic">Portfolio Polish</td><td class="td-do">Clean all 3 projects. Write READMEs with metrics. Record demos. Publish 2 technical blog posts</td><td class="td-tool">GitHub, Towards Data Science, Medium</td><td class="td-deliverable"><span class="deliverable-tag">Portfolio site + 2 published articles</span></td><td class="td-ai"><span class="ai-note">AI helps write technical blog posts — visibility before interviews changes hiring dynamics</span></td></tr>
+      <tr><td class="td-week">Wk 34–36</td><td class="td-topic">Applications + Offers</td><td class="td-do">5–10 applications/week. Fintechs first. Target OpenAI Residency. Apply to Series B AI startups</td><td class="td-tool">LinkedIn, Wellfound, Otta, company careers</td><td class="td-deliverable"><span class="deliverable-tag">Signed offer letter 🎉</span></td><td class="td-ai"><span class="ai-note">Prep behavioural interviews with Claude: "Tell me about a model you shipped to production"</span></td></tr>
+    </tbody>
+  </table>
+  <div class="milestone">✓ <strong>Month 9 checkpoint:</strong> 3 portfolio projects. ML theory mastered. Production MLOps experience. You are interview-ready for any junior AI/ML role.</div>
+</div>
+
+<footer>
+  <div class="footer-block">
+    <h3>Your 3 Portfolio Projects</h3>
+    <ul>
+      <li>End-to-end ML pipeline (fraud detection / credit scoring)</li>
+      <li>Fine-tuned LLM on financial data (published on HuggingFace)</li>
+      <li>AI fintech product (RAG + agents + evals + cloud deployed)</li>
+    </ul>
+  </div>
+  <div class="footer-block">
+    <h3>Certifications to Earn</h3>
+    <ul>
+      <li>AWS Certified ML Specialty (Month 5–6)</li>
+      <li>DeepLearning.AI MLOps Specialisation (Month 5)</li>
+      <li>Google Professional ML Engineer (Month 6+)</li>
+    </ul>
+  </div>
+  <div class="footer-block">
+    <h3>Daily Habits That Compound</h3>
+    <ul>
+      <li>1 Kaggle problem or ML paper per week</li>
+      <li>Maintain public GitHub — green squares daily</li>
+      <li>Publish 1 technical blog post per month (Month 5+)</li>
+      <li>30 ML flashcards reviewed daily (Months 7–9)</li>
+    </ul>
+  </div>
+  <div class="footer-block">
+    <h3>Top Target Companies</h3>
+    <ul>
+      <li>Stripe AI · Nubank ML · Revolut · Plaid · Feedzai</li>
+      <li>OpenAI Residency · Anthropic · Cohere · Mistral</li>
+      <li>Databricks · Hugging Face · Scale AI · Weights &amp; Biases</li>
+      <li>Any Series B–D AI-first fintech (fastest to hire)</li>
+    </ul>
+  </div>
+</footer>
+<div style="margin-top:32px;font-size:11px;color:#3a3a5a;text-align:center;padding-bottom:12px;">
+  Built from real 2026 job data · Stripe · Nubank · Revolut · OpenAI · Anthropic · Google DeepMind · Meta FAIR · Databricks · Hugging Face · 40+ others
+</div>
+</div>
+</body>
+</html>
