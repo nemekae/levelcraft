@@ -1,4 +1,4 @@
-# neeX — Portfolio & Career Roadmap Platform
+# Portfolio & Career Roadmap Platform
 
 A personal portfolio site with three interactive, self-contained career roadmaps — **DevSecOps**, **Full-Stack Engineering**, and **AI/ML Engineering** — each laid out as a week-by-week curriculum with topics, resources, and hands-on deliverables.
 
@@ -116,4 +116,4 @@ If this ever spins out into its own standalone learning platform:
 
 ## 📄 License & Credit
 
-© 2026 Emeka Nwachukwu. All rights reserved unless otherwise noted.
+© 2026 Emeka Nwachukwu - nemekae | www.neeX.com . All rights reserved unless otherwise noted.
