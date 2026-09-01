@@ -1,3 +1,22 @@
+/* =========================================================
+   Base / Reset
+   ========================================================= */
+:root {
+    --brand: #2196F3;
+    --brand-dark: #0d47a1;
+    --footer-bg: #2196F4;
+    --section-bg: #E8EDF2;
+    --content-max: 1600px;      /* caps line-length on very large desktops */
+    --content-width: 94vw;      /* fluid width, tightened at larger breakpoints below */
+    --gap-sm: 12px;
+    --gap-md: 20px;
+    --gap-lg: 30px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,13 +25,23 @@ body {
 }
 
 .main {
-    height: 100vh;
+    min-height: 100vh; /* was height:100vh — avoids clipping when content overflows on small screens */
 }
 
 a {
     color: white;
     text-decoration-line: none;
     font-size: 12px;
+}
+
+p {
+    color: black;
+    font-size: 12px;
+}
+
+a:hover,
+a:focus-visible {
+    text-decoration-line: underline;
 }
 
 ul {
@@ -25,124 +54,176 @@ li {
 }
 
 #the-logo {
-    width: 30px;
+    width: 28px;
     border-radius: 50%;
-}
-
-#logo-item {
-    width: 20px;
     display: block;
 }
 
+.logo-item {
+    width: 18px;
+    display: block;
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
 .heading {
-    background: #2196F3;
+    background: var(--brand);
     display: flex;
     justify-content: center;
 }
 
 .header {
-    height: 5vh;
-    width: 80vw;
+    min-height: 5vh;
+    width: var(--content-width);
+    max-width: var(--content-max);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    align-items: center;
+    gap: var(--gap-sm) var(--gap-md);
+    padding: 12px 0;
+}
+
+.header-logo {
+    display: flex;
     align-items: center;
 }
 
 .header-know, .header-socials {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
 h2 {
     margin: 0;
-    font-size: 50px;
+    font-size: clamp(22px, 6vw, 50px); /* fluid: readable on mobile, caps out on desktop */
 }
 
-.sections {
+h2 p {
+    margin: 0;
+    font-size: clamp(10px, 2vw, 16px);
+}
+
+/* =========================================================
+   Hero / Section 1
+   Two content blocks (designer / coder): stacked on mobile,
+   side-by-side once there's enough width to hold both
+   comfortably alongside the background artwork.
+   ========================================================= */
+.section-intro {
     display: flex;
     justify-content: center;
 }
 
 .section1 {
-    height: 50vh;
-    width: 80vw;
+    min-height: auto;
+    width: var(--content-width);
+    max-width: var(--content-max);
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    gap: var(--gap-lg);
+    text-align: center;
+    padding: 40px 16px;
     background-image: url(images/adam.png);
-    background-size: auto;
+    background-size: contain;      /* 'auto' let the image overflow on small screens */
     background-repeat: no-repeat;
     background-position: center top;
 }
 
 .section1 p {
-    font-size: 14px;
+    font-size: clamp(13px, 1.6vw, 16px);
+    color: #3E0F8D
 }
 
 h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 18px);
+    text-align: center;
+   
+
 }
 
-.sectionx {
+/* =========================================================
+   Domains / Section 2
+   ========================================================= */
+.section-domains {
     display: flex;
     justify-content: center;
-    background: #E8EDF2;
+    background: var(--section-bg);
 }
 
 .section2 {
-    height: 40vh;
-    width: 80vw;
+    min-height: 40vh;
+    width: var(--content-width);
+    max-width: var(--content-max);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: var(--gap-lg);
+    padding: 40px 16px;
 }
 
 .domain {
     display: flex;
+    flex-wrap: wrap;              /* lets cards wrap instead of squeezing/overflowing */
     justify-content: center;
-    gap: 20px;
+    gap: var(--gap-md);
 }
 
 .domains a {
     display: block;
 }
 
-#domain-img {
-    width: 200px;
-    height: 140px;
-    border: 2px solid #2196F3;
+.domain-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 10 / 7;         /* preserves the original 200:140 proportions responsively */
+    object-fit: cover;            /* keeps real artwork from stretching/distorting */
+    border: 2px solid var(--brand);
     border-radius: 8px;
     cursor: pointer;
     display: block;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-#domain-img:hover {
+.domain-img:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 18px rgba(33, 150, 243, 0.35);
 }
 
-#domain-img:focus-visible {
-    outline: 3px solid #0d47a1;
+.domain-img:focus-visible {
+    outline: 3px solid var(--brand-dark);
     outline-offset: 2px;
 }
 
+/* =========================================================
+   Footer
+   ========================================================= */
 .footing {
     display: flex;
     justify-content: center;
-    background: #2196F4;
+    background: var(--footer-bg);
 }
 
 .footer {
-    height: 5vh;
-    width: 80vw;
+    min-height: 5vh;
+    width: var(--content-width);
+    max-width: var(--content-max);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    gap: var(--gap-sm) var(--gap-md);
+    padding: 12px 0;
+    text-align: center;
 }
 
 .footer p {
@@ -152,4 +233,63 @@ h3 {
 
 .footer a {
     color: white;
+}
+
+/* =========================================================
+   Breakpoints
+   Mobile-first: base styles above target small phones.
+   Each breakpoint below widens content and restores
+   more "desktop-like" proportions as space allows.
+   ========================================================= */
+
+/* Small phones (~360–479px) — header stacks fully to avoid squeeze */
+@media (max-width: 479px) {
+    .header, .footer { flex-direction: column; }
+}
+
+/* Large phones / small tablets */
+@media (min-width: 480px) {
+    body { font-size: 13px; }
+}
+
+/* Tablets (portrait) — hero blocks move to a side-by-side row */
+@media (min-width: 768px) {
+    :root { --content-width: 85vw; }
+    body { font-size: 14px; }
+    #the-logo { width: 32px; }
+    .logo-item { width: 20px; }
+
+    .section1 {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-align: left;
+    }
+}
+
+/* Small laptops / tablets (landscape) */
+@media (min-width: 992px) {
+    :root { --content-width: 82vw; }
+    .section1 {
+        min-height: 50vh;
+        background-size: auto; /* full-size art once there's room for it */
+    }
+}
+
+/* 13" laptop class (~1200–1439px logical width) */
+@media (min-width: 1200px) {
+    :root { --content-width: 80vw; }
+    body { font-size: 15px; }
+}
+
+/* Beyond 13" — standard desktop monitors */
+@media (min-width: 1440px) {
+    :root { --content-width: 76vw; }
+    body { font-size: 16px; }
+    h2 { font-size: 50px; } /* fixed size restored now there's room without crowding */
+}
+
+/* Large / ultra-wide desktop monitors */
+@media (min-width: 1920px) {
+    :root { --content-width: 68vw; }
 }
