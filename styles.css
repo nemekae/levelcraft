@@ -149,16 +149,27 @@ h2 p {
   object-fit: cover;
 }
 
-.intro-text {
+.levelcraft-intro {
   width: 60%;               /* ← 60% of the parent (.section1) */
   max-width: 100%;             /* paragraph stays full width of the parent */
-  text-align:center;
-  line-height: 1.7;
-  font-size: 14px;
+  text-align: justify;
+  font-size: 10px;
   font-weight: 300;
   color: #3E0F8D;
   padding: 0;
   margin: 0;
+}
+
+.levelcraft-intro h2 {
+  margin-bottom: 1.25rem;
+  font-size: 2.25rem;
+  line-height: 1.0;
+  color: #0C2D57 
+}
+
+.levelcraft-intro p {
+  margin-bottom: 0.75rem;
+  color: #0D47A1;
 }
 
 h3 {
@@ -174,6 +185,12 @@ h3 {
   padding: 2px 6px;   
   color: white;
   font-size: 13px;
+}
+
+#zero-to-hero {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 /* =========================================================
