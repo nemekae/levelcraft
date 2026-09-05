@@ -2,294 +2,329 @@
    Base / Reset
    ========================================================= */
 :root {
-    --brand: #2196F3;
-    --brand-dark: #0d47a1;
-    --footer-bg: #2196F4;
-    --section-bg: #E8EDF2;
-    --content-max: 1600px;      /* caps line-length on very large desktops */
-    --content-width: 94vw;      /* fluid width, tightened at larger breakpoints below */
-    --gap-sm: 12px;
-    --gap-md: 20px;
-    --gap-lg: 30px;
+  --brand: #2196F3;
+  --brand-dark: #E3F2FD;
+  --footer-bg: #2196F3;;
+  --section-bg:#0C2D57   /*ABD2FA */;
+  --content-width: 70vw;          /* ← unified to 70% as requested */
+  --content-max: 1400px;          /* safety cap on very large screens */
+  --gap-sm: 12px;
+  --gap-md: 20px;
+  --gap-lg: 30px;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 12px;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .main {
-    min-height: 100vh; /* was height:100vh — avoids clipping when content overflows on small screens */
+  min-height: 100vh;
 }
 
 a {
-    color: white;
-    text-decoration-line: none;
-    font-size: 12px;
-}
-
-p {
-    color: black;
-    font-size: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
 }
 
 a:hover,
 a:focus-visible {
-    text-decoration-line: underline;
+  text-decoration: underline;
+}
+
+p {
+  color: black;
+  font-size: 12px;
+  margin: 0;
 }
 
 ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 #the-logo {
-    width: 28px;
-    border-radius: 50%;
-    display: block;
+  width: 28px;
+  border-radius: 50%;
+  display: block;
 }
 
 .logo-item {
-    width: 18px;
-    display: block;
+  width: 18px;
+  display: block;
 }
 
 /* =========================================================
-   Header
+   Header (.heading)
    ========================================================= */
+/* Header – rounded top corners */
 .heading {
-    background: var(--brand);
-    display: flex;
-    justify-content: center;
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  background: var(--brand);
+  display: flex;
+  justify-content: center;
+  border-radius: 12px 12px 0 0;   /* top-left + top-right rounded */
 }
 
 .header {
-    min-height: 5vh;
-    width: var(--content-width);
-    max-width: var(--content-max);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap: var(--gap-sm) var(--gap-md);
-    padding: 12px 0;
+  width: 100%;
+  min-height: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--gap-sm) var(--gap-md);
+  padding: 12px 0;
 }
 
 .header-logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.header-know, .header-socials {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.header-know,
+.header-socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 h2 {
-    margin: 0;
-    font-size: clamp(22px, 6vw, 50px); /* fluid: readable on mobile, caps out on desktop */
+  margin: 0;
+  font-size: clamp(22px, 6vw, 50px);
 }
 
 h2 p {
-    margin: 0;
-    font-size: clamp(10px, 2vw, 16px);
+  margin: 0;
+  font-size: clamp(10px, 2vw, 16px);
 }
 
 /* =========================================================
-   Hero / Section 1
-   Two content blocks (designer / coder): stacked on mobile,
-   side-by-side once there's enough width to hold both
-   comfortably alongside the background artwork.
+   Hero / Section Intro
    ========================================================= */
 .section-intro {
-    display: flex;
-    justify-content: center;
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 0 auto;                     /* centred */
+  background-color: var(--brand-dark);
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.section1 {
-    min-height: auto;
-    width: var(--content-width);
-    max-width: var(--content-max);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--gap-lg);
-    text-align: center;
-    padding: 40px 16px;
-    background-image: url(images/adam.png);
-    background-size: contain;      /* 'auto' let the image overflow on small screens */
-    background-repeat: no-repeat;
-    background-position: center top;
+.section1.item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;     /* keeps children centred */
+  gap: 4rem;
+  padding: 0 1.5rem;
 }
 
-.section1 p {
-    font-size: clamp(13px, 1.6vw, 16px);
-    color: #3E0F8D
+.profile-img {
+  width: 60%;               /* ← 60% of the parent (.section1) */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;           /* extra safety for centring */
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.intro-text {
+  width: 60%;               /* ← 60% of the parent (.section1) */
+  max-width: 100%;             /* paragraph stays full width of the parent */
+  text-align:center;
+  line-height: 1.7;
+  font-size: 12px;
+  font-weight: 300;
+  color: #3E0F8D;
+  padding: 0;
+  margin: 0;
 }
 
 h3 {
-    margin: 0;
-    font-size: clamp(14px, 2vw, 18px);
-    text-align: center;
-   
+  margin: 0;
+  font-size: clamp(14px, 2vw, 18px);
+  text-align: center;
+  color: white;
+}
 
+.levelcraft {
+  color: purple;
+  font-weight: bold;
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 /* =========================================================
    Domains / Section 2
    ========================================================= */
 .section-domains {
-    display: flex;
-    justify-content: center;
-    background: var(--section-bg);
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 0 auto;                     /* centred */
+  background: var(--section-bg);
+  display: flex;
+  justify-content: center;
 }
 
 .section2 {
-    min-height: 40vh;
-    width: var(--content-width);
-    max-width: var(--content-max);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--gap-lg);
-    padding: 40px 16px;
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-lg);
+  padding: 40px 16px;
 }
 
 .domain {
-    display: flex;
-    flex-wrap: wrap;              /* lets cards wrap instead of squeezing/overflowing */
-    justify-content: center;
-    gap: var(--gap-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-md);
 }
 
 .domains a {
-    display: block;
+  display: block;
+}
+
+
+p {
+  margin: 0;
+  font-size: clamp(10px, 2vw, 14px);
+  text-align: center;
+  color: white;
 }
 
 .domain-img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    aspect-ratio: 10 / 7;         /* preserves the original 200:140 proportions responsively */
-    object-fit: cover;            /* keeps real artwork from stretching/distorting */
-    border: 2px solid var(--brand);
-    border-radius: 8px;
-    cursor: pointer;
-    display: block;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  aspect-ratio: 10 / 7;
+  object-fit: cover;
+  border: 2px solid var(--brand);
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .domain-img:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(33, 150, 243, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(33, 150, 243, 0.35);
 }
 
 .domain-img:focus-visible {
-    outline: 3px solid var(--brand-dark);
-    outline-offset: 2px;
+  outline: 3px solid var(--brand-dark);
+  outline-offset: 2px;
 }
 
 /* =========================================================
-   Footer
+   Footer (.footing)
    ========================================================= */
 .footing {
-    display: flex;
-    justify-content: center;
-    background: var(--footer-bg);
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  background: var(--footer-bg);
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 12px 12px;
 }
 
 .footer {
-    min-height: 5vh;
-    width: var(--content-width);
-    max-width: var(--content-max);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap: var(--gap-sm) var(--gap-md);
-    padding: 12px 0;
-    text-align: center;
+  width: 100%;
+  min-height: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--gap-sm) var(--gap-md);
+  padding: 12px 0;
+  text-align: center;
 }
 
 .footer p {
-    margin: 0;
-    color: white;
+  margin: 0;
+  color: white;
 }
 
 .footer a {
-    color: white;
+  color: white;
 }
 
 /* =========================================================
    Breakpoints
-   Mobile-first: base styles above target small phones.
-   Each breakpoint below widens content and restores
-   more "desktop-like" proportions as space allows.
    ========================================================= */
 
-/* Small phones (~360–479px) — header stacks fully to avoid squeeze */
+/* Small phones */
 @media (max-width: 479px) {
-    .header, .footer { flex-direction: column; }
+  .header,
+  .footer {
+    flex-direction: column;
+  }
 }
 
-/* Large phones / small tablets */
+/* Large phones */
 @media (min-width: 480px) {
-    body { font-size: 13px; }
+  body {
+    font-size: 13px;
+  }
 }
 
-/* Tablets (portrait) — hero blocks move to a side-by-side row */
+/* Tablets */
 @media (min-width: 768px) {
-    :root { --content-width: 85vw; }
-    body { font-size: 14px; }
-    #the-logo { width: 32px; }
-    .logo-item { width: 20px; }
-
-    .section1 {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        text-align: left;
-    }
+  body {
+    font-size: 14px;
+  }
+  #the-logo {
+    width: 32px;
+  }
+  .logo-item {
+    width: 20px;
+  }
 }
 
-/* Small laptops / tablets (landscape) */
+/* Small laptops */
 @media (min-width: 992px) {
-    :root { --content-width: 82vw; }
-    .section1 {
-        min-height: 50vh;
-        background-size: auto; /* full-size art once there's room for it */
-    }
+  .section1.item {
+    min-height: 50vh;
+  }
 }
 
-/* 13" laptop class (~1200–1439px logical width) */
+/* 13" laptops */
 @media (min-width: 1200px) {
-    :root { --content-width: 80vw; }
-    body { font-size: 15px; }
+  body {
+    font-size: 15px;
+  }
 }
 
-/* Beyond 13" — standard desktop monitors */
+/* Standard desktops */
 @media (min-width: 1440px) {
-    :root { --content-width: 76vw; }
-    body { font-size: 16px; }
-    h2 { font-size: 50px; } /* fixed size restored now there's room without crowding */
-}
-
-/* Large / ultra-wide desktop monitors */
-@media (min-width: 1920px) {
-    :root { --content-width: 68vw; }
+  body {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 50px;
+  }
 }
